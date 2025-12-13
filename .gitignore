@@ -1,0 +1,43 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IDE
+.vscode/
+.idea/
+.claude/
+
+# Model files (optional - if too large)
+*.pth
+*.h5
+*.ckpt
+
+# SNN related files (will be added by team member)
+snn.py
+snn_ip.cpp
+SNN_IP.h
+vgg_spiking.py
+SNN_Training_Colab.ipynb
+project/snn.py
+project/snn_script.py
+project/logs/snn/
+Vivado Block Design 요약.txt
+vitis.txt
+
+# Large dataset files (use Google Drive or Git LFS)
+Datasets/
+
+# Temporary files
+*.zip
