@@ -1,9 +1,3 @@
-#####################################
-#   @author: Nitin Rathi    		#
-#	Writes commands to execute		#
-# 	in script.sh				 	#
-#####################################
-
 import os
 import itertools
 import pdb
@@ -49,4 +43,5 @@ if __name__ == '__main__':
 		f.write(s)
 	
 	f.close()
+
 	#os.system('./script.sh')
