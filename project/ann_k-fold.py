@@ -1,6 +1,3 @@
-#############################
-#   @author: Nitin Rathi    #
-#############################
 import argparse
 import torch
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -402,4 +399,5 @@ if __name__ == '__main__':
     avg_acc = sum(results.values()) / len(results)
     f.write(f'\n Average Accuracy over {args.k_folds} folds: {avg_acc:.4f}')
     for fold, acc in results.items():
+
         f.write(f'\n Fold {fold+1}: {acc:.4f}')
