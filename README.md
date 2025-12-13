@@ -43,11 +43,9 @@ git push origin main  # 업로드
 - `project/ann_k-fold.py` - K-fold 교차 검증 구현
 - `project/ann_script.py` - ANN 실행 스크립트
 - `project/logs/` - 학습 로그
-- `Datasets/` - 손동작 데이터셋
-- `check_classes.py` - 클래스 확인 스크립트
 - `GOOGLE_DRIVE_SETUP.md` - 구글 드라이브 설정 가이드
 
-### SNN 관련 파일 (팀원이 추가 예정)
+### SNN 관련 파일 (추가해야함. 파일 이름 다를 수 있음)
 - `snn.py` - SNN 모델 구현
 - `snn_ip.cpp` - SNN IP 구현 (C++)
 - `SNN_IP.h` - SNN IP 헤더 파일
@@ -59,5 +57,5 @@ git push origin main  # 업로드
 
 ## 주의사항
 - 푸시하기 전에 항상 `git pull` 먼저 실행
-- 충돌(conflict) 발생 시 팀장에게 문의
+- 충돌(conflict) 발생 시 문의
 - SNN 파일 추가 시 `.gitignore`에서 해당 파일 제거 후 커밋
