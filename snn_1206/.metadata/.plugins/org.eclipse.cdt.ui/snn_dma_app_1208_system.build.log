@@ -1,0 +1,10 @@
+20:42:07 **** Build of configuration Debug for project snn_dma_app_1208_system ****
+make all 
+Generating bif file for the system project
+generate_system_bif.bat 2259 C:/snn_1206/design_1_wrapper_1208/export/design_1_wrapper_1208/design_1_wrapper_1208.xpfm standalone_domain C:/snn_1206/snn_dma_app_1208_system/Debug/system.bif
+sdcard_gen --xpfm C:/snn_1206/design_1_wrapper_1208/export/design_1_wrapper_1208/design_1_wrapper_1208.xpfm --sys_config design_1_wrapper_1208 --bif C:/snn_1206/snn_dma_app_1208_system/Debug/system.bif --bitstream C:/snn_1206/snn_dma_app_1208/_ide/bitstream/design_1_wrapper_1208.bit --elf C:/snn_1206/snn_dma_app_1208/Debug/snn_dma_app_1208.elf,ps7_cortexa9_0
+creating BOOT.BIN using C:/snn_1206/snn_dma_app_1208/_ide/bitstream/design_1_wrapper_1208.bit
+Running C:/Xilinx/Vitis/2019.2/bin/bootgen  -image C:/snn_1206/snn_dma_app_1208_system/Debug/sd_card_temp/boot.bif -w -o i BOOT.BIN
+
+20:42:14 Build Finished (took 6s.709ms)
+

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vivadoHLSLog:LogRoot xmlns:vivadoHLSLog="www.xilinx.com/vivadoHLSLog">
+  <errorLogs>
+    <logs>
+      <synLog/>
+      <simLog/>
+      <mgLog/>
+      <packageLog/>
+      <csimLog/>
+    </logs>
+  </errorLogs>
+  <warningLogs>
+    <logs>
+      <synLog>
+        <logs message="WARNING: [SCHED 204-21] The critical path in module 'snn_core_fc_last' consists of the following:&#xD;&#xA;&#x9;'fcmp' operation ('tmp_10', snn_ip_core/snn_ip.cpp:90) [2182]  (5.43 ns)&#xD;&#xA;&#x9;'and' operation ('and_ln90_1', snn_ip_core/snn_ip.cpp:90) [2183]  (0.978 ns)&#xD;&#xA;&#x9;'select' operation ('max_val', snn_ip_core/snn_ip.cpp:90) [2184]  (0.698 ns)&#xD;&#xA;&#x9;'phi' operation ('max_val') with incoming values : ('max_val', snn_ip_core/snn_ip.cpp:84) ('max_val', snn_ip_core/snn_ip.cpp:90) [2155]  (0 ns)&#xD;&#xA;&#x9;'fcmp' operation ('tmp_10', snn_ip_core/snn_ip.cpp:90) [2182]  (5.43 ns)" projectName="snn_ip" solutionName="solution1" date="2025-12-08T17:42:14.821+0900" type="Warning"/>
+        <logs message="WARNING: [SCHED 204-21] Estimated clock period (12.538ns) exceeds the target (target clock period: 10ns, clock uncertainty: 1.25ns, effective delay budget: 8.75ns)." projectName="snn_ip" solutionName="solution1" date="2025-12-08T17:42:14.800+0900" type="Warning"/>
+        <logs message="WARNING: [SCHED 204-69] Unable to schedule 'load' operation ('classifier_3_weight_264', snn_ip_core/snn_ip.cpp:74) on array 'classifier_3_weight' due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'classifier_3_weight'." projectName="snn_ip" solutionName="solution1" date="2025-12-08T17:42:13.545+0900" type="Warning"/>
+        <logs message="WARNING: [XFORM 203-542] Cannot flatten a loop nest 'TIMESTEP_LOOP' (snn_ip_core/snn_ip.cpp:50:35) in function 'snn_core_fc_last' : &#xD;&#xA;&#xD;&#xA;more than one sub loop." projectName="snn_ip" solutionName="solution1" date="2025-12-08T17:41:59.126+0900" type="Warning"/>
+      </synLog>
+      <simLog/>
+      <mgLog/>
+      <packageLog>
+        <logs message="WARNING: [IP_Flow 19-4832] The IP name 'snn_ip_ap_fmul_2_max_dsp_32' you have specified is long. The Windows operating system has path length limitations. It is recommended you use shorter names to reduce the likelihood of issues." projectName="snn_ip" solutionName="solution1" date="2025-12-08T17:43:18.013+0900" type="Warning"/>
+        <logs message="WARNING: [IP_Flow 19-4832] The IP name 'snn_ip_ap_fcmp_0_no_dsp_32' you have specified is long. The Windows operating system has path length limitations. It is recommended you use shorter names to reduce the likelihood of issues." projectName="snn_ip" solutionName="solution1" date="2025-12-08T17:43:15.520+0900" type="Warning"/>
+        <logs message="WARNING: [IP_Flow 19-4832] The IP name 'snn_ip_ap_fadd_3_full_dsp_32' you have specified is long. The Windows operating system has path length limitations. It is recommended you use shorter names to reduce the likelihood of issues." projectName="snn_ip" solutionName="solution1" date="2025-12-08T17:43:13.194+0900" type="Warning"/>
+      </packageLog>
+      <csimLog/>
+    </logs>
+  </warningLogs>
+</vivadoHLSLog:LogRoot>

@@ -1,0 +1,163 @@
+
+
+================================================================
+== Vivado HLS Report for 'snn_ip'
+================================================================
+* Date:           Mon Dec  8 17:42:34 2025
+
+* Version:        2019.2 (Build 2704478 on Wed Nov 06 22:10:23 MST 2019)
+* Project:        snn_ip
+* Solution:       solution1
+* Product family: zynq
+* Target device:  xc7z020-clg484-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+-----------+------------+
+    |  Clock |  Target  | Estimated | Uncertainty|
+    +--------+----------+-----------+------------+
+    |ap_clk  | 10.00 ns | 12.538 ns |   1.25 ns  |
+    +--------+----------+-----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-------+-------+---------+
+    |  Latency (cycles) |  Latency (absolute) |    Interval   | Pipeline|
+    |   min   |   max   |    min   |    max   |  min  |  max  |   Type  |
+    +---------+---------+----------+----------+-------+-------+---------+
+    |    28419|    28419| 0.356 ms | 0.356 ms |  28419|  28419|   none  |
+    +---------+---------+----------+----------+-------+-------+---------+
+
+    + Detail: 
+        * Instance: 
+        +----------------------------+------------------+---------+---------+----------+----------+-------+-------+---------+
+        |                            |                  |  Latency (cycles) |  Latency (absolute) |    Interval   | Pipeline|
+        |          Instance          |      Module      |   min   |   max   |    min   |    max   |  min  |  max  |   Type  |
+        +----------------------------+------------------+---------+---------+----------+----------+-------+-------+---------+
+        |grp_snn_core_fc_last_fu_93  |snn_core_fc_last  |    28416|    28416| 0.356 ms | 0.356 ms |  28416|  28416|   none  |
+        +----------------------------+------------------+---------+---------+----------+----------+-------+-------+---------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+-------+-----+
+|       Name      | BRAM_18K| DSP48E|   FF   |  LUT  | URAM|
++-----------------+---------+-------+--------+-------+-----+
+|DSP              |        -|      -|       -|      -|    -|
+|Expression       |        -|      -|       -|      -|    -|
+|FIFO             |        -|      -|       -|      -|    -|
+|Instance         |       10|     15|   32687|  18662|    0|
+|Memory           |        -|      -|       -|      -|    -|
+|Multiplexer      |        -|      -|       -|     45|    -|
+|Register         |        -|      -|       5|      -|    -|
++-----------------+---------+-------+--------+-------+-----+
+|Total            |       10|     15|   32692|  18707|    0|
++-----------------+---------+-------+--------+-------+-----+
+|Available        |      280|    220|  106400|  53200|    0|
++-----------------+---------+-------+--------+-------+-----+
+|Utilization (%)  |        3|      6|      30|     35|    0|
++-----------------+---------+-------+--------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    +----------------------------+-------------------+---------+-------+-------+-------+-----+
+    |          Instance          |       Module      | BRAM_18K| DSP48E|   FF  |  LUT  | URAM|
+    +----------------------------+-------------------+---------+-------+-------+-------+-----+
+    |grp_snn_core_fc_last_fu_93  |snn_core_fc_last   |       10|     15|  32651|  18622|    0|
+    |snn_ip_CTRL_s_axi_U         |snn_ip_CTRL_s_axi  |        0|      0|     36|     40|    0|
+    +----------------------------+-------------------+---------+-------+-------+-------+-----+
+    |Total                       |                   |       10|     15|  32687|  18662|    0|
+    +----------------------------+-------------------+---------+-------+-------+-------+-----+
+
+    * DSP48E: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    N/A
+
+    * Multiplexer: 
+    +------------------------+----+-----------+-----+-----------+
+    |          Name          | LUT| Input Size| Bits| Total Bits|
+    +------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm               |  27|          5|    1|          5|
+    |in_stream_TREADY_int    |   9|          2|    1|          2|
+    |out_stream_TDATA_blk_n  |   9|          2|    1|          2|
+    +------------------------+----+-----------+-----+-----------+
+    |Total                   |  45|          9|    3|          9|
+    +------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-----------------------------------------+---+----+-----+-----------+
+    |                   Name                  | FF| LUT| Bits| Const Bits|
+    +-----------------------------------------+---+----+-----+-----------+
+    |ap_CS_fsm                                |  4|   0|    4|          0|
+    |grp_snn_core_fc_last_fu_93_ap_start_reg  |  1|   0|    1|          0|
+    +-----------------------------------------+---+----+-----+-----------+
+    |Total                                    |  5|   0|    5|          0|
+    +-----------------------------------------+---+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++--------------------+-----+-----+------------+---------------------+--------------+
+|      RTL Ports     | Dir | Bits|  Protocol  |    Source Object    |    C Type    |
++--------------------+-----+-----+------------+---------------------+--------------+
+|s_axi_CTRL_AWVALID  |  in |    1|    s_axi   |         CTRL        |  return void |
+|s_axi_CTRL_AWREADY  | out |    1|    s_axi   |         CTRL        |  return void |
+|s_axi_CTRL_AWADDR   |  in |    4|    s_axi   |         CTRL        |  return void |
+|s_axi_CTRL_WVALID   |  in |    1|    s_axi   |         CTRL        |  return void |
+|s_axi_CTRL_WREADY   | out |    1|    s_axi   |         CTRL        |  return void |
+|s_axi_CTRL_WDATA    |  in |   32|    s_axi   |         CTRL        |  return void |
+|s_axi_CTRL_WSTRB    |  in |    4|    s_axi   |         CTRL        |  return void |
+|s_axi_CTRL_ARVALID  |  in |    1|    s_axi   |         CTRL        |  return void |
+|s_axi_CTRL_ARREADY  | out |    1|    s_axi   |         CTRL        |  return void |
+|s_axi_CTRL_ARADDR   |  in |    4|    s_axi   |         CTRL        |  return void |
+|s_axi_CTRL_RVALID   | out |    1|    s_axi   |         CTRL        |  return void |
+|s_axi_CTRL_RREADY   |  in |    1|    s_axi   |         CTRL        |  return void |
+|s_axi_CTRL_RDATA    | out |   32|    s_axi   |         CTRL        |  return void |
+|s_axi_CTRL_RRESP    | out |    2|    s_axi   |         CTRL        |  return void |
+|s_axi_CTRL_BVALID   | out |    1|    s_axi   |         CTRL        |  return void |
+|s_axi_CTRL_BREADY   |  in |    1|    s_axi   |         CTRL        |  return void |
+|s_axi_CTRL_BRESP    | out |    2|    s_axi   |         CTRL        |  return void |
+|ap_clk              |  in |    1| ap_ctrl_hs |        snn_ip       | return value |
+|ap_rst_n            |  in |    1| ap_ctrl_hs |        snn_ip       | return value |
+|interrupt           | out |    1| ap_ctrl_hs |        snn_ip       | return value |
+|in_stream_TDATA     |  in |   32|    axis    |  in_stream_V_data_V |    pointer   |
+|in_stream_TVALID    |  in |    1|    axis    |  in_stream_V_dest_V |    pointer   |
+|in_stream_TREADY    | out |    1|    axis    |  in_stream_V_dest_V |    pointer   |
+|in_stream_TDEST     |  in |    1|    axis    |  in_stream_V_dest_V |    pointer   |
+|in_stream_TKEEP     |  in |    4|    axis    |  in_stream_V_keep_V |    pointer   |
+|in_stream_TSTRB     |  in |    4|    axis    |  in_stream_V_strb_V |    pointer   |
+|in_stream_TUSER     |  in |    1|    axis    |  in_stream_V_user_V |    pointer   |
+|in_stream_TLAST     |  in |    1|    axis    |  in_stream_V_last_V |    pointer   |
+|in_stream_TID       |  in |    1|    axis    |   in_stream_V_id_V  |    pointer   |
+|out_stream_TDATA    | out |   32|    axis    | out_stream_V_data_V |    pointer   |
+|out_stream_TVALID   | out |    1|    axis    | out_stream_V_dest_V |    pointer   |
+|out_stream_TREADY   |  in |    1|    axis    | out_stream_V_dest_V |    pointer   |
+|out_stream_TDEST    | out |    1|    axis    | out_stream_V_dest_V |    pointer   |
+|out_stream_TKEEP    | out |    4|    axis    | out_stream_V_keep_V |    pointer   |
+|out_stream_TSTRB    | out |    4|    axis    | out_stream_V_strb_V |    pointer   |
+|out_stream_TUSER    | out |    1|    axis    | out_stream_V_user_V |    pointer   |
+|out_stream_TLAST    | out |    1|    axis    | out_stream_V_last_V |    pointer   |
+|out_stream_TID      | out |    1|    axis    |  out_stream_V_id_V  |    pointer   |
++--------------------+-----+-----+------------+---------------------+--------------+
+

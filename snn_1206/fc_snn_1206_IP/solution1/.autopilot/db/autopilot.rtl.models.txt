@@ -1,0 +1,13 @@
+fc_snn_top_W_FC_V_0
+fc_snn_top_W_FC_V_1
+fc_snn_top_W_FC_V_2
+fc_snn_top_W_FC_V_3
+fc_snn_top_W_FC_V_4
+fc_snn_top_W_FC_V_5
+fc_snn_top_W_FC_V_6
+fc_snn_top_W_FC_V_7
+fc_snn_top_W_FC_V_8
+fc_snn_top_W_FC_V_9
+fc_snn_top_CTRL_s_axi
+regslice_core
+fc_snn_top

@@ -1,0 +1,266 @@
+/******************************************************************************
+*
+* Copyright (C) 2009 - 2014 Xilinx, Inc.  All rights reserved.
+*
+* Permission is hereby granted, free of charge, to any person obtaining a copy
+* of this software and associated documentation files (the "Software"), to deal
+* in the Software without restriction, including without limitation the rights
+* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+* copies of the Software, and to permit persons to whom the Software is
+* furnished to do so, subject to the following conditions:
+*
+* The above copyright notice and this permission notice shall be included in
+* all copies or substantial portions of the Software.
+*
+* Use of the Software is limited solely to applications:
+* (a) running on a Xilinx device, or
+* (b) that interact with a Xilinx device through a bus or interconnect.
+*
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+* XILINX  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+* WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF
+* OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+* SOFTWARE.
+*
+* Except as contained in this notice, the name of the Xilinx shall not be used
+* in advertising or otherwise to promote the sale, use or other dealings in
+* this Software without prior written authorization from Xilinx.
+*
+******************************************************************************/
+
+/*
+ * helloworld.c: simple test application
+ *
+ * This application configures UART 16550 to baud rate 9600.
+ * PS7 UART (Zynq) is not initialized by this application, since
+ * bootrom/bsp configures it to baud rate 115200
+ *
+ * ------------------------------------------------
+ * | UART TYPE   BAUD RATE                        |
+ * ------------------------------------------------
+ *   uartns550   9600
+ *   uartlite    Configurable only in HW design
+ *   ps7_uart    115200 (configured by bootrom/bsp)
+ */
+
+#include "xparameters.h"
+#include "xaxidma.h"    // AXI DMA driver
+#include "xsnn_ip.h"    // HLS SNN IP driver
+#include "xil_printf.h"
+#include "xil_cache.h"
+#include <stdint.h>
+
+#define IMAGE_SIZE     64     // 64x64 image
+#define N_INPUT        256    // FC-last input size
+#define NUM_TIMESTEPS  10
+#define N_WORDS_IN     (N_INPUT * NUM_TIMESTEPS)   // 2560
+#define N_WORDS_OUT    1
+
+#define DMA_DEV_ID     XPAR_AXIDMA_0_DEVICE_ID
+#define SNN_DEV_ID     XPAR_SNN_IP_0_DEVICE_ID
+
+static XAxiDma AxiDma;
+static XSnn_ip SnnIp;
+
+// TX: PS -> DMA -> snn_ip.in_stream
+// RX: snn_ip.out_stream -> DMA -> PS
+static u32 tx_buf[N_WORDS_IN] __attribute__((aligned(64)));
+static u32 rx_buf[N_WORDS_OUT] __attribute__((aligned(64)));
+
+// Image buffer (grayscale 0~255)
+static uint8_t image[IMAGE_SIZE][IMAGE_SIZE];
+
+// Spike tensor: [timestep][neuron]
+static uint8_t spikes[NUM_TIMESTEPS][N_INPUT];
+
+void load_image(uint8_t img[IMAGE_SIZE][IMAGE_SIZE]);
+void image_to_features(const uint8_t img[IMAGE_SIZE][IMAGE_SIZE], float feat[N_INPUT]);
+void features_to_spikes(const float feat[N_INPUT], uint8_t spikes[NUM_TIMESTEPS][N_INPUT]);
+void pack_spikes_to_tx(const uint8_t spikes[NUM_TIMESTEPS][N_INPUT]);
+
+int main()
+{
+    int status;
+
+    xil_printf("=== SNN FC-last DMA test (real image->spike) ===\r\n");
+
+    // 1) Initialize SNN IP (AXI-Lite control)
+    status = XSnn_ip_Initialize(&SnnIp, SNN_DEV_ID);
+    if (status != XST_SUCCESS) {
+        xil_printf("ERROR: SnnIp init failed\r\n");
+        return -1;
+    }
+
+    // 2) Initialize AXI DMA
+    XAxiDma_Config *CfgPtr = XAxiDma_LookupConfig(DMA_DEV_ID);
+    if (!CfgPtr) {
+        xil_printf("ERROR: No DMA config found\r\n");
+        return -1;
+    }
+
+    status = XAxiDma_CfgInitialize(&AxiDma, CfgPtr);
+    if (status != XST_SUCCESS) {
+        xil_printf("ERROR: DMA init failed\r\n");
+        return -1;
+    }
+
+    if (XAxiDma_HasSg(&AxiDma)) {
+        xil_printf("ERROR: DMA is in SG mode, expected Simple mode\r\n");
+        return -1;
+    }
+
+    // 3) Load image (TODO: implement your own input source)
+    load_image(image);
+
+    // 4) Convert image -> 256 features
+    float features[N_INPUT];
+    image_to_features(image, features);
+
+    // 5) Convert features -> spike trains (10 timesteps)
+    features_to_spikes(features, spikes);
+
+    // 6) Pack spikes into tx_buf in the order snn_ip expects
+    pack_spikes_to_tx(spikes);
+
+    // Flush caches so DMA sees latest data
+    Xil_DCacheFlushRange((UINTPTR)tx_buf, sizeof(tx_buf));
+    Xil_DCacheFlushRange((UINTPTR)rx_buf, sizeof(rx_buf));
+
+    // 7) Start S2MM (receive class output from snn_ip)
+    status = XAxiDma_SimpleTransfer(
+        &AxiDma,
+        (UINTPTR)rx_buf,
+        N_WORDS_OUT * sizeof(u32),
+        XAXIDMA_DEVICE_TO_DMA
+    );
+    if (status != XST_SUCCESS) {
+        xil_printf("ERROR: DMA S2MM setup failed\r\n");
+        return -1;
+    }
+
+    // 8) Start MM2S (send spike sequence to snn_ip)
+    status = XAxiDma_SimpleTransfer(
+        &AxiDma,
+        (UINTPTR)tx_buf,
+        N_WORDS_IN * sizeof(u32),
+        XAXIDMA_DMA_TO_DEVICE
+    );
+    if (status != XST_SUCCESS) {
+        xil_printf("ERROR: DMA MM2S setup failed\r\n");
+        return -1;
+    }
+
+    // 9) Start SNN IP core
+    XSnn_ip_Start(&SnnIp);
+
+    // 10) Wait until DMA transfers are done
+    while (XAxiDma_Busy(&AxiDma, XAXIDMA_DMA_TO_DEVICE));
+    while (XAxiDma_Busy(&AxiDma, XAXIDMA_DEVICE_TO_DMA));
+
+    // Invalidate cache to read result
+    Xil_DCacheInvalidateRange((UINTPTR)rx_buf, sizeof(rx_buf));
+
+    // 11) Read predicted class (one word from snn_ip's out_stream)
+    int cls = (int)(rx_buf[0] & 0xFF);
+    xil_printf("Predicted class = %d\r\n", cls);
+
+    xil_printf("=== Done ===\r\n");
+    return 0;
+}
+
+// --------------------------------------------------------
+// 1) Load image into 64x64 buffer
+//    You must replace this with real camera/file input.
+// --------------------------------------------------------
+void load_image(uint8_t img[IMAGE_SIZE][IMAGE_SIZE])
+{
+    // Example: simple synthetic pattern for now.
+    // Replace this with your real input (camera, file, UART, etc.).
+    for (int i = 0; i < IMAGE_SIZE; i++) {
+        for (int j = 0; j < IMAGE_SIZE; j++) {
+            // Center-bright pattern: brighter near the center
+            int di = i - IMAGE_SIZE / 2;
+            int dj = j - IMAGE_SIZE / 2;
+            int dist2 = di*di + dj*dj;
+            int max_dist2 = (IMAGE_SIZE/2) * (IMAGE_SIZE/2);
+            float val = 1.0f - (float)dist2 / (float)max_dist2;
+            if (val < 0.0f) val = 0.0f;
+            uint8_t pix = (uint8_t)(val * 255.0f);
+            img[i][j] = pix;
+        }
+    }
+}
+
+// --------------------------------------------------------
+// 2) Image (64x64) -> 256 features
+//    4x4 average pooling: 64x64 -> 16x16 = 256
+// --------------------------------------------------------
+void image_to_features(const uint8_t img[IMAGE_SIZE][IMAGE_SIZE], float feat[N_INPUT])
+{
+    const int block = 4;   // 64 / 4 = 16
+    int idx = 0;
+
+    for (int by = 0; by < IMAGE_SIZE; by += block) {
+        for (int bx = 0; bx < IMAGE_SIZE; bx += block) {
+            int sum = 0;
+            for (int dy = 0; dy < block; dy++) {
+                for (int dx = 0; dx < block; dx++) {
+                    sum += img[by + dy][bx + dx];
+                }
+            }
+            float avg = (float)sum / (block * block * 255.0f);  // normalize 0~1
+            if (avg < 0.0f) avg = 0.0f;
+            if (avg > 1.0f) avg = 1.0f;
+            feat[idx++] = avg;
+        }
+    }
+}
+
+// --------------------------------------------------------
+// 3) Features[256] -> Spikes[10][256]
+//    Simple rate coding:
+//    For neuron i, with feature v in [0,1],
+//    spike[t][i] = 1 if v > (t / NUM_TIMESTEPS), else 0.
+//    Brighter feature -> more spikes across timesteps.
+// --------------------------------------------------------
+void features_to_spikes(const float feat[N_INPUT], uint8_t spikes[NUM_TIMESTEPS][N_INPUT])
+{
+    for (int t = 0; t < NUM_TIMESTEPS; t++) {
+        float thr = (float)t / (float)NUM_TIMESTEPS;  // 0.0, 0.1, ..., 0.9
+        for (int i = 0; i < N_INPUT; i++) {
+            float v = feat[i];  // [0,1]
+            spikes[t][i] = (v > thr) ? 1 : 0;
+        }
+    }
+}
+
+// --------------------------------------------------------
+// 4) Pack spikes[t][i] into tx_buf in the order:
+//
+//    for t in [0..NUM_TIMESTEPS-1]:
+//      for i in [0..N_INPUT-1]:
+//        send one AXI word (lower 8 bits used by snn_ip)
+//
+// This matches the snn_ip code that reads:
+//   for (t) {
+//     for (i) {
+//       pkt = in_stream.read();
+//       v = pkt.data[7:0];
+//       spike_in[i] = (v != 0);
+//     }
+//   }
+// --------------------------------------------------------
+void pack_spikes_to_tx(const uint8_t spikes[NUM_TIMESTEPS][N_INPUT])
+{
+    int idx = 0;
+    for (int t = 0; t < NUM_TIMESTEPS; t++) {
+        for (int i = 0; i < N_INPUT; i++) {
+            u8 v = spikes[t][i] ? 1 : 0;
+            tx_buf[idx++] = (u32)v;   // snn_ip uses lower 8 bits
+        }
+    }
+
+    xil_printf("Spikes packed: N_WORDS_IN = %d\r\n", N_WORDS_IN);
+}

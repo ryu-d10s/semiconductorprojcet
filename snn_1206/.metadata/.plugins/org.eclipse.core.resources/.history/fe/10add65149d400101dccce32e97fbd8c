@@ -1,0 +1,149 @@
+#include "platform.h"
+#include "xil_printf.h"
+#include "xparameters.h"
+#include "xaxidma.h"
+#include "xil_cache.h"
+
+// If you have an HLS driver header (optional)
+// #include "xsnn_ip.h"
+
+// ==========================================
+// Configuration
+// ==========================================
+#define DMA_DEV_ID          XPAR_AXIDMA_0_DEVICE_ID
+
+// Adjust these if you already defined them elsewhere
+#define MEM_BASE_ADDR       0x01000000
+#define TX_BUFFER_BASE      (MEM_BASE_ADDR + 0x00100000)
+#define RX_BUFFER_BASE      (MEM_BASE_ADDR + 0x00300000)
+
+#define T_TIMESTEPS         10
+#define N_INPUT             256
+#define N_OUTPUT            10
+
+// We send 1 spike per AXI-stream word (1 byte stored in LSB)
+#define N_SPIKES            (T_TIMESTEPS * N_INPUT)   // 2560
+#define N_WORDS_IN          N_SPIKES                  // 2560 32-bit words
+#define N_WORDS_OUT         1                         // one 32-bit result
+
+// ==========================================
+// Global variables
+// ==========================================
+static XAxiDma AxiDma;
+
+static u32 *TxBufferPtr = (u32 *)TX_BUFFER_BASE;
+static u32 *RxBufferPtr = (u32 *)RX_BUFFER_BASE;
+
+// UART inbyte prototype (standalone BSP usually provides this)
+extern char inbyte(void);
+
+// ==========================================
+// Helper: Initialize AXI DMA
+// ==========================================
+int init_dma(void)
+{
+    XAxiDma_Config *CfgPtr;
+    int Status;
+
+    CfgPtr = XAxiDma_LookupConfig(DMA_DEV_ID);
+    if (!CfgPtr) {
+        xil_printf("No config found for AXI DMA %d\r\n", DMA_DEV_ID);
+        return XST_FAILURE;
+    }
+
+    Status = XAxiDma_CfgInitialize(&AxiDma, CfgPtr);
+    if (Status != XST_SUCCESS) {
+        xil_printf("AXI DMA init failed\r\n");
+        return XST_FAILURE;
+    }
+
+    // Ensure Scatter-Gather mode is disabled (we use Simple mode)
+    if (XAxiDma_HasSg(&AxiDma)) {
+        xil_printf("AXI DMA is in SG mode, not supported in this example\r\n");
+        return XST_FAILURE;
+    }
+
+    return XST_SUCCESS;
+}
+
+// ==========================================
+// main
+// ==========================================
+int main()
+{
+    int Status;
+    int iter = 0;
+
+    init_platform();
+    xil_printf("=== SNN FC-last DMA test (PC spikes) ===\r\n");
+
+    Status = init_dma();
+    if (Status != XST_SUCCESS) {
+        xil_printf("DMA init failed. Exiting.\r\n");
+        cleanup_platform();
+        return XST_FAILURE;
+    }
+
+    xil_printf("Using T_TIMESTEPS = %d, N_INPUT = %d, N_SPIKES = %d\r\n",
+               T_TIMESTEPS, N_INPUT, N_SPIKES);
+
+    while (1) {
+        xil_printf("\r\n==============================\r\n");
+        xil_printf("Iteration %d: waiting for header from PC...\r\n", iter);
+
+        // --- header ---
+        ...
+        xil_printf("Header OK (iteration %d). Receiving %d spike bytes...\r\n", iter, N_SPIKES);
+        ...
+        xil_printf("Iteration %d: received all spikes.\r\n", iter);
+
+        // DMA 전에 Rx 버퍼 초기화 (디버깅용)
+        RxBufferPtr[0] = 0xDEADBEEF;
+
+        xil_printf("Iteration %d: flush/invalidate cache.\r\n", iter);
+        Xil_DCacheFlushRange((UINTPTR)TxBufferPtr, N_WORDS_IN * sizeof(u32));
+        Xil_DCacheInvalidateRange((UINTPTR)RxBufferPtr, N_WORDS_OUT * sizeof(u32));
+
+        xil_printf("Iteration %d: start S2MM.\r\n", iter);
+        ...
+        xil_printf("Iteration %d: start MM2S.\r\n", iter);
+        ...
+        xil_printf("Iteration %d: waiting for MM2S done...\r\n", iter);
+
+        // 여기에 timeout 포함
+        int timeout = 100000000; // 적당히 큰 값
+        while (XAxiDma_Busy(&AxiDma, XAXIDMA_DMA_TO_DEVICE)) {
+            if (--timeout <= 0) {
+                xil_printf("ERROR: MM2S timeout at iter %d\r\n", iter);
+                break;
+            }
+        }
+        if (timeout <= 0) {
+            // 다음 iteration으로 넘어가거나, while(1)에서 빠져나갈지 결정
+            continue;
+        }
+
+        xil_printf("Iteration %d: waiting for S2MM done...\r\n", iter);
+        timeout = 100000000;
+        while (XAxiDma_Busy(&AxiDma, XAXIDMA_DEVICE_TO_DMA)) {
+            if (--timeout <= 0) {
+                xil_printf("ERROR: S2MM timeout at iter %d\r\n", iter);
+                break;
+            }
+        }
+        if (timeout <= 0) {
+            continue;
+        }
+
+        Xil_DCacheInvalidateRange((UINTPTR)RxBufferPtr, N_WORDS_OUT * sizeof(u32));
+
+        xil_printf("Iteration %d: DMA done. Rx[0] = 0x%08lx\r\n",
+                   iter, (unsigned long)RxBufferPtr[0]);
+
+        int out_class = (int)(RxBufferPtr[0] & 0xFF);
+        xil_printf("Predicted class = %d\r\n", out_class);
+        xil_printf("---- One sample processed. Ready for next. ----\r\n");
+
+        iter++;
+    }
+}

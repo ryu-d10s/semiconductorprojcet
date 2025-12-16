@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ASCII"?>
+<sdkproject:SdkProject xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sdkproject="http://www.xilinx.com/sdkproject" name="snn_dma_app" location="C:/snn_1206/snn_dma_app" platform="C:/snn_1206/snn_plat/export/snn_plat/snn_plat.xpfm" platformUID="xilinx:zed::0.0(custom)" systemProject="snn_dma_app_system" sysConfig="snn_plat" runtime="C/C++" cpu="standalone_domain" cpuInstance="ps7_cortexa9_0" os="standalone" mssSignature="66954c10e26dc18d854832dd10d529fc">
+  <configuration name="Debug" id="xilinx.gnu.armv7.exe.debug.1666602399">
+    <configBuildOptions xsi:type="sdkproject:SdkOptions"/>
+    <lastBuildOptions xsi:type="sdkproject:SdkOptions"/>
+  </configuration>
+  <configuration name="Release" id="xilinx.gnu.armv7.exe.release.1658221604" dirty="true">
+    <configBuildOptions xsi:type="sdkproject:SdkOptions"/>
+  </configuration>
+  <template appTemplateName="hello_world"/>
+</sdkproject:SdkProject>

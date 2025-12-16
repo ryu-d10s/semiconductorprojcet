@@ -1,0 +1,29 @@
+
+snn_1206
+	Vivado 2019.2
+		design_1_wrapper_1208
+		design_1_wrapper_1208.bit
+		design_1_wrapper_1208.xsa
+		snn_1206.xpr
+		snn_1206.srcs
+
+	Vivado HLS 2019.2
+		snn_ip
+			Source
+				snn_ip.cpp		(snn_ip_core 파일)
+				snn_ip.h		(snn_ip_core 파일)
+				snn_weights.h	(snn_ip_core 파일)
+			solution1
+				impl
+					ip
+
+	Vitis IDE
+		snn_1206
+		snn_dma_app_1208_system
+		snn_dma_app_1208
+			src
+				main.c
+				platform_config.h
+				platform.h
+		
+

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vivadoHLSLog:LogRoot xmlns:vivadoHLSLog="www.xilinx.com/vivadoHLSLog">
+  <errorLogs>
+    <logs>
+      <synLog/>
+      <simLog/>
+      <mgLog/>
+      <packageLog/>
+      <csimLog/>
+    </logs>
+  </errorLogs>
+  <warningLogs>
+    <logs>
+      <synLog>
+        <logs message="WARNING: [RTGEN 206-101] Register 'v_mem_V_9' is power-on initialization." projectName="fc_snn_1206_IP" solutionName="solution1" date="2025-12-07T01:45:57.002+0900" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Register 'v_mem_V_8' is power-on initialization." projectName="fc_snn_1206_IP" solutionName="solution1" date="2025-12-07T01:45:56.977+0900" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Register 'v_mem_V_7' is power-on initialization." projectName="fc_snn_1206_IP" solutionName="solution1" date="2025-12-07T01:45:56.952+0900" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Register 'v_mem_V_6' is power-on initialization." projectName="fc_snn_1206_IP" solutionName="solution1" date="2025-12-07T01:45:56.925+0900" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Register 'v_mem_V_5' is power-on initialization." projectName="fc_snn_1206_IP" solutionName="solution1" date="2025-12-07T01:45:56.899+0900" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Register 'v_mem_V_4' is power-on initialization." projectName="fc_snn_1206_IP" solutionName="solution1" date="2025-12-07T01:45:56.885+0900" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Register 'v_mem_V_3' is power-on initialization." projectName="fc_snn_1206_IP" solutionName="solution1" date="2025-12-07T01:45:56.852+0900" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Register 'v_mem_V_2' is power-on initialization." projectName="fc_snn_1206_IP" solutionName="solution1" date="2025-12-07T01:45:56.816+0900" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Register 'v_mem_V_1' is power-on initialization." projectName="fc_snn_1206_IP" solutionName="solution1" date="2025-12-07T01:45:56.790+0900" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Register 'v_mem_V_0' is power-on initialization." projectName="fc_snn_1206_IP" solutionName="solution1" date="2025-12-07T01:45:56.769+0900" type="Warning"/>
+        <logs message="WARNING: [SYNCHK 200-23] fc_snn_top.cpp:86: variable-indexed range selection may cause suboptimal QoR." projectName="fc_snn_1206_IP" solutionName="solution1" date="2025-12-07T01:45:54.227+0900" type="Warning"/>
+      </synLog>
+      <simLog/>
+      <mgLog/>
+      <packageLog/>
+      <csimLog/>
+    </logs>
+  </warningLogs>
+</vivadoHLSLog:LogRoot>

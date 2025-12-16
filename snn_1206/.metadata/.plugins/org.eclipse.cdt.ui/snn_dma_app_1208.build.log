@@ -1,0 +1,25 @@
+00:31:03 **** Incremental Build of configuration Debug for project snn_dma_app_1208 ****
+make all 
+make --no-print-directory pre-build
+a9-linaro-pre-build-step
+' '
+make --no-print-directory main-build
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -IC:/snn_1206/design_1_wrapper_1208/export/design_1_wrapper_1208/sw/design_1_wrapper_1208/standalone_domain/bspinclude/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+'Finished building: ../src/main.c'
+' '
+'Building target: snn_dma_app_1208.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -LC:/snn_1206/design_1_wrapper_1208/export/design_1_wrapper_1208/sw/design_1_wrapper_1208/standalone_domain/bsplib/lib -o "snn_dma_app_1208.elf"  ./src/main.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: snn_dma_app_1208.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size snn_dma_app_1208.elf  |tee "snn_dma_app_1208.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  45936	   2672	  25208	  73816	  12058	snn_dma_app_1208.elf
+'Finished building: snn_dma_app_1208.elf.size'
+' '
+
+00:31:04 Build Finished (took 1s.288ms)
+

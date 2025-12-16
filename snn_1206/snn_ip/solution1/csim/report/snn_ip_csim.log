@@ -1,0 +1,100 @@
+INFO: [SIM 2] *************** CSIM start ***************
+INFO: [SIM 4] CSIM will launch GCC as the compiler.
+   Compiling ../../../../snn_ip_core/testbench.cpp in debug mode
+csim.mk:74: recipe for target 'obj/testbench.o' failed
+In file included from C:/Xilinx/Vivado/2019.2/include/floating_point_v7_0_bitacc_cmodel.h:143:0,
+                 from C:/Xilinx/Vivado/2019.2/include/hls_fpo.h:186,
+                 from C:/Xilinx/Vivado/2019.2/include/hls_half.h:44,
+                 from C:/Xilinx/Vivado/2019.2/include/etc/ap_private.h:90,
+                 from C:/Xilinx/Vivado/2019.2/include/ap_common.h:641,
+                 from C:/Xilinx/Vivado/2019.2/include/ap_int.h:54,
+                 from ../../../../snn_ip_core/snn_ip.h:9,
+                 from ../../../../snn_ip_core/testbench.cpp:10:
+C:/Xilinx/Vivado/2019.2/include/gmp.h:62:0: warning: "__GMP_LIBGMP_DLL" redefined
+ #define __GMP_LIBGMP_DLL  0
+ 
+In file included from C:/Xilinx/Vivado/2019.2/include/hls_fpo.h:186:0,
+                 from C:/Xilinx/Vivado/2019.2/include/hls_half.h:44,
+                 from C:/Xilinx/Vivado/2019.2/include/etc/ap_private.h:90,
+                 from C:/Xilinx/Vivado/2019.2/include/ap_common.h:641,
+                 from C:/Xilinx/Vivado/2019.2/include/ap_int.h:54,
+                 from ../../../../snn_ip_core/snn_ip.h:9,
+                 from ../../../../snn_ip_core/testbench.cpp:10:
+C:/Xilinx/Vivado/2019.2/include/floating_point_v7_0_bitacc_cmodel.h:135:0: note: this is the location of the previous definition
+ #define __GMP_LIBGMP_DLL 1
+ 
+../../../../snn_ip_core/testbench.cpp: In function 'bool run_test(const char*, pixel_t (*)[64], int)':
+../../../../snn_ip_core/testbench.cpp:101:39: error: invalid initialization of reference of type 'hls::stream<ap_axiu<32, 1, 1, 1> >&' from expression of type 'pixel_t (*)[64] {aka ap_uint<8> (*)[64]}'
+     snn_ip(image, &output_class, &done);
+                                       ^
+In file included from ../../../../snn_ip_core/testbench.cpp:10:0:
+../../../../snn_ip_core/snn_ip.h:81:6: note: in passing argument 1 of 'void snn_ip(hls::stream<ap_axiu<32, 1, 1, 1> >&, hls::stream<ap_axiu<32, 1, 1, 1> >&)'
+ void snn_ip(
+      ^~~~~~
+../../../../snn_ip_core/testbench.cpp: In function 'int main()':
+../../../../snn_ip_core/testbench.cpp:153:44: error: invalid initialization of reference of type 'hls::stream<ap_axiu<32, 1, 1, 1> >&' from expression of type 'pixel_t [64][64] {aka ap_uint<8> [64][64]}'
+     snn_ip(test_image, &output_class, &done);
+                                            ^
+In file included from ../../../../snn_ip_core/testbench.cpp:10:0:
+../../../../snn_ip_core/snn_ip.h:81:6: note: in passing argument 1 of 'void snn_ip(hls::stream<ap_axiu<32, 1, 1, 1> >&, hls::stream<ap_axiu<32, 1, 1, 1> >&)'
+ void snn_ip(
+      ^~~~~~
+../../../../snn_ip_core/testbench.cpp:177:44: error: invalid initialization of reference of type 'hls::stream<ap_axiu<32, 1, 1, 1> >&' from expression of type 'pixel_t [64][64] {aka ap_uint<8> [64][64]}'
+     snn_ip(test_image, &output_class, &done);
+                                            ^
+In file included from ../../../../snn_ip_core/testbench.cpp:10:0:
+../../../../snn_ip_core/snn_ip.h:81:6: note: in passing argument 1 of 'void snn_ip(hls::stream<ap_axiu<32, 1, 1, 1> >&, hls::stream<ap_axiu<32, 1, 1, 1> >&)'
+ void snn_ip(
+      ^~~~~~
+../../../../snn_ip_core/testbench.cpp:197:44: error: invalid initialization of reference of type 'hls::stream<ap_axiu<32, 1, 1, 1> >&' from expression of type 'pixel_t [64][64] {aka ap_uint<8> [64][64]}'
+     snn_ip(test_image, &output_class, &done);
+                                            ^
+In file included from ../../../../snn_ip_core/testbench.cpp:10:0:
+../../../../snn_ip_core/snn_ip.h:81:6: note: in passing argument 1 of 'void snn_ip(hls::stream<ap_axiu<32, 1, 1, 1> >&, hls::stream<ap_axiu<32, 1, 1, 1> >&)'
+ void snn_ip(
+      ^~~~~~
+../../../../snn_ip_core/testbench.cpp:217:44: error: invalid initialization of reference of type 'hls::stream<ap_axiu<32, 1, 1, 1> >&' from expression of type 'pixel_t [64][64] {aka ap_uint<8> [64][64]}'
+     snn_ip(test_image, &output_class, &done);
+                                            ^
+In file included from ../../../../snn_ip_core/testbench.cpp:10:0:
+../../../../snn_ip_core/snn_ip.h:81:6: note: in passing argument 1 of 'void snn_ip(hls::stream<ap_axiu<32, 1, 1, 1> >&, hls::stream<ap_axiu<32, 1, 1, 1> >&)'
+ void snn_ip(
+      ^~~~~~
+../../../../snn_ip_core/testbench.cpp:237:44: error: invalid initialization of reference of type 'hls::stream<ap_axiu<32, 1, 1, 1> >&' from expression of type 'pixel_t [64][64] {aka ap_uint<8> [64][64]}'
+     snn_ip(test_image, &output_class, &done);
+                                            ^
+In file included from ../../../../snn_ip_core/testbench.cpp:10:0:
+../../../../snn_ip_core/snn_ip.h:81:6: note: in passing argument 1 of 'void snn_ip(hls::stream<ap_axiu<32, 1, 1, 1> >&, hls::stream<ap_axiu<32, 1, 1, 1> >&)'
+ void snn_ip(
+      ^~~~~~
+../../../../snn_ip_core/testbench.cpp:257:44: error: invalid initialization of reference of type 'hls::stream<ap_axiu<32, 1, 1, 1> >&' from expression of type 'pixel_t [64][64] {aka ap_uint<8> [64][64]}'
+     snn_ip(test_image, &output_class, &done);
+                                            ^
+In file included from ../../../../snn_ip_core/testbench.cpp:10:0:
+../../../../snn_ip_core/snn_ip.h:81:6: note: in passing argument 1 of 'void snn_ip(hls::stream<ap_axiu<32, 1, 1, 1> >&, hls::stream<ap_axiu<32, 1, 1, 1> >&)'
+ void snn_ip(
+      ^~~~~~
+../../../../snn_ip_core/testbench.cpp:277:44: error: invalid initialization of reference of type 'hls::stream<ap_axiu<32, 1, 1, 1> >&' from expression of type 'pixel_t [64][64] {aka ap_uint<8> [64][64]}'
+     snn_ip(test_image, &output_class, &done);
+                                            ^
+In file included from ../../../../snn_ip_core/testbench.cpp:10:0:
+../../../../snn_ip_core/snn_ip.h:81:6: note: in passing argument 1 of 'void snn_ip(hls::stream<ap_axiu<32, 1, 1, 1> >&, hls::stream<ap_axiu<32, 1, 1, 1> >&)'
+ void snn_ip(
+      ^~~~~~
+../../../../snn_ip_core/testbench.cpp:297:44: error: invalid initialization of reference of type 'hls::stream<ap_axiu<32, 1, 1, 1> >&' from expression of type 'pixel_t [64][64] {aka ap_uint<8> [64][64]}'
+     snn_ip(test_image, &output_class, &done);
+                                            ^
+In file included from ../../../../snn_ip_core/testbench.cpp:10:0:
+../../../../snn_ip_core/snn_ip.h:81:6: note: in passing argument 1 of 'void snn_ip(hls::stream<ap_axiu<32, 1, 1, 1> >&, hls::stream<ap_axiu<32, 1, 1, 1> >&)'
+ void snn_ip(
+      ^~~~~~
+../../../../snn_ip_core/testbench.cpp:321:44: error: invalid initialization of reference of type 'hls::stream<ap_axiu<32, 1, 1, 1> >&' from expression of type 'pixel_t [64][64] {aka ap_uint<8> [64][64]}'
+     snn_ip(test_image, &output_class, &done);
+                                            ^
+In file included from ../../../../snn_ip_core/testbench.cpp:10:0:
+../../../../snn_ip_core/snn_ip.h:81:6: note: in passing argument 1 of 'void snn_ip(hls::stream<ap_axiu<32, 1, 1, 1> >&, hls::stream<ap_axiu<32, 1, 1, 1> >&)'
+ void snn_ip(
+      ^~~~~~
+make: *** [obj/testbench.o] Error 1
+ERR: [SIM 100] CSim file generation failed: compilation error(s).
+INFO: [SIM 3] *************** CSIM finish ***************

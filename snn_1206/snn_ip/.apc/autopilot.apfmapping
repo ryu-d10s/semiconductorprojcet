@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
+  <source>
+    <originFiles name="snn_weights.h" path="C:\snn_1206\snn_ip_core\snn_weights.h"/>
+    <originFiles name="snn_ip.h" path="C:\snn_1206\snn_ip_core\snn_ip.h"/>
+    <originFiles name="snn_ip.cpp" path="C:\snn_1206\snn_ip_core\snn_ip.cpp"/>
+  </source>
+  <testbench>
+    <originFiles name="testbench.cpp" path="C:\snn_1206\snn_ip_core\testbench.cpp"/>
+  </testbench>
+</autopilotfilemapping:AutoPilotFileMapping>

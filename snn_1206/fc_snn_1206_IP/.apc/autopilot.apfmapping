@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
+  <source>
+    <originFiles name="weights.h" path="C:\snn_1206\weights.h"/>
+    <originFiles name="fc_snn_top.cpp" path="C:\snn_1206\fc_snn_top.cpp"/>
+  </source>
+  <testbench>
+    <originFiles name="tb.cpp" path="C:\snn_1206\tb.cpp"/>
+  </testbench>
+</autopilotfilemapping:AutoPilotFileMapping>

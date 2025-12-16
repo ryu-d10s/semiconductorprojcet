@@ -1,0 +1,1029 @@
+02:29:54 INFO  : Launching XSCT server: xsct.bat -n  -interactive C:\snn_1206\temp_xsdb_launch_script.tcl
+02:30:00 INFO  : XSCT server has started successfully.
+02:30:00 INFO  : plnx-install-location is set to ''
+02:30:03 INFO  : Registering command handlers for Vitis TCF services
+02:30:12 INFO  : Successfully done setting XSCT server connection channel  
+02:30:12 INFO  : Successfully done query RDI_DATADIR 
+02:30:12 INFO  : Successfully done setting workspace for the tool. 
+02:33:11 INFO  : Successfully done sdx_reload_mss "C:/snn_1206/snn_plat/zynq_fsbl/zynq_fsbl_bsp/system.mss"
+02:33:12 INFO  : Successfully done sdx_reload_mss "C:/snn_1206/snn_plat/ps7_cortexa9_0/standalone_domain/bsp/system.mss"
+02:54:21 INFO  : Checking for BSP changes to sync application flags for project 'snn_dma_app'...
+02:55:31 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+02:55:32 INFO  : Jtag cable 'Digilent JTAG-SMT2NC 210308BA4DDE' is selected.
+02:55:32 INFO  : 'jtag frequency' command is executed.
+02:55:32 INFO  : Context for 'APU' is selected.
+02:55:32 INFO  : System reset is completed.
+02:55:36 INFO  : 'after 3000' command is executed.
+02:55:36 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent JTAG-SMT2NC 210308BA4DDE" && level==0} -index 1' command is executed.
+02:55:38 INFO  : FPGA configured successfully with bitstream "C:/snn_1206/snn_dma_app/_ide/bitstream/design_1_wrapper.bit"
+02:55:39 INFO  : Context for 'APU' is selected.
+02:55:39 INFO  : Hardware design information is loaded from 'C:/snn_1206/snn_plat/export/snn_plat/hw/design_1_wrapper.xsa'.
+02:55:39 INFO  : 'configparams force-mem-access 1' command is executed.
+02:55:39 INFO  : Context for 'APU' is selected.
+02:55:39 INFO  : Sourcing of 'C:/snn_1206/snn_dma_app/_ide/psinit/ps7_init.tcl' is done.
+02:55:40 INFO  : 'ps7_init' command is executed.
+02:55:40 INFO  : 'ps7_post_config' command is executed.
+02:55:41 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+02:55:41 INFO  : The application 'C:/snn_1206/snn_dma_app/Debug/snn_dma_app.elf' is downloaded to processor 'ps7_cortexa9_0'.
+02:55:41 INFO  : 'configparams force-mem-access 0' command is executed.
+02:55:41 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Digilent JTAG-SMT2NC 210308BA4DDE" && level==0} -index 1
+fpga -file C:/snn_1206/snn_dma_app/_ide/bitstream/design_1_wrapper.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw C:/snn_1206/snn_plat/export/snn_plat/hw/design_1_wrapper.xsa -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+source C:/snn_1206/snn_dma_app/_ide/psinit/ps7_init.tcl
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "*A9*#0"}
+dow C:/snn_1206/snn_dma_app/Debug/snn_dma_app.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+02:55:41 INFO  : Memory regions updated for context APU
+02:55:41 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+02:55:42 INFO  : 'con' command is executed.
+02:55:42 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A9*#0"}
+con
+----------------End of Script----------------
+
+02:55:42 INFO  : Launch script is exported to file 'C:\snn_1206\.sdk\launch_scripts\single_application_debug\debugger_snn_dma_app-default.tcl'
+03:22:46 INFO  : Checking for BSP changes to sync application flags for project 'snn_dma_app'...
+03:23:05 INFO  : Disconnected from the channel tcfchan#2.
+03:23:06 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+03:23:06 INFO  : Jtag cable 'Digilent JTAG-SMT2NC 210308BA4DDE' is selected.
+03:23:06 INFO  : 'jtag frequency' command is executed.
+03:23:06 INFO  : Context for 'APU' is selected.
+03:23:06 INFO  : System reset is completed.
+03:23:09 INFO  : 'after 3000' command is executed.
+03:23:10 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent JTAG-SMT2NC 210308BA4DDE" && level==0} -index 1' command is executed.
+03:23:12 INFO  : FPGA configured successfully with bitstream "C:/snn_1206/snn_dma_app/_ide/bitstream/design_1_wrapper.bit"
+03:23:12 INFO  : Context for 'APU' is selected.
+03:23:12 INFO  : Hardware design information is loaded from 'C:/snn_1206/snn_plat/export/snn_plat/hw/design_1_wrapper.xsa'.
+03:23:12 INFO  : 'configparams force-mem-access 1' command is executed.
+03:23:12 INFO  : Context for 'APU' is selected.
+03:23:12 INFO  : Sourcing of 'C:/snn_1206/snn_dma_app/_ide/psinit/ps7_init.tcl' is done.
+03:23:14 INFO  : 'ps7_init' command is executed.
+03:23:14 INFO  : 'ps7_post_config' command is executed.
+03:23:14 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+03:23:14 INFO  : The application 'C:/snn_1206/snn_dma_app/Debug/snn_dma_app.elf' is downloaded to processor 'ps7_cortexa9_0'.
+03:23:14 INFO  : 'configparams force-mem-access 0' command is executed.
+03:23:14 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Digilent JTAG-SMT2NC 210308BA4DDE" && level==0} -index 1
+fpga -file C:/snn_1206/snn_dma_app/_ide/bitstream/design_1_wrapper.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw C:/snn_1206/snn_plat/export/snn_plat/hw/design_1_wrapper.xsa -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+source C:/snn_1206/snn_dma_app/_ide/psinit/ps7_init.tcl
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "*A9*#0"}
+dow C:/snn_1206/snn_dma_app/Debug/snn_dma_app.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+03:23:15 INFO  : Memory regions updated for context APU
+03:23:15 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+03:23:15 INFO  : 'con' command is executed.
+03:23:15 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A9*#0"}
+con
+----------------End of Script----------------
+
+03:23:15 INFO  : Launch script is exported to file 'C:\snn_1206\.sdk\launch_scripts\single_application_debug\debugger_snn_dma_app-default.tcl'
+03:55:44 INFO  : Disconnected from the channel tcfchan#3.
+20:03:28 INFO  : Launching XSCT server: xsct.bat -n  -interactive C:\snn_1206\temp_xsdb_launch_script.tcl
+20:03:31 INFO  : XSCT server has started successfully.
+20:03:31 INFO  : plnx-install-location is set to ''
+20:03:31 INFO  : Successfully done setting XSCT server connection channel  
+20:03:31 INFO  : Successfully done setting workspace for the tool. 
+20:03:33 INFO  : Registering command handlers for Vitis TCF services
+20:03:40 INFO  : Successfully done query RDI_DATADIR 
+20:08:17 INFO  : Successfully done sdx_reload_mss "C:/snn_1206/snn_plat/zynq_fsbl/zynq_fsbl_bsp/system.mss"
+20:08:17 INFO  : Successfully done sdx_reload_mss "C:/snn_1206/snn_plat/ps7_cortexa9_0/standalone_domain/bsp/system.mss"
+20:22:16 INFO  : Checking for BSP changes to sync application flags for project 'snn_dma_app_1208'...
+20:23:10 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+20:23:11 INFO  : Jtag cable 'Digilent JTAG-SMT2NC 210308BA4DDE' is selected.
+20:23:11 INFO  : 'jtag frequency' command is executed.
+20:23:11 INFO  : Context for 'APU' is selected.
+20:23:11 INFO  : System reset is completed.
+20:23:14 INFO  : 'after 3000' command is executed.
+20:23:14 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent JTAG-SMT2NC 210308BA4DDE" && level==0} -index 1' command is executed.
+20:23:16 INFO  : FPGA configured successfully with bitstream "C:/snn_1206/snn_dma_app_1208/_ide/bitstream/design_1_wrapper_1208.bit"
+20:23:16 INFO  : Context for 'APU' is selected.
+20:23:17 INFO  : Hardware design information is loaded from 'C:/snn_1206/design_1_wrapper_1208/export/design_1_wrapper_1208/hw/design_1_wrapper_1208.xsa'.
+20:23:17 INFO  : 'configparams force-mem-access 1' command is executed.
+20:23:17 INFO  : Context for 'APU' is selected.
+20:23:17 INFO  : Sourcing of 'C:/snn_1206/snn_dma_app_1208/_ide/psinit/ps7_init.tcl' is done.
+20:23:17 INFO  : 'ps7_init' command is executed.
+20:23:17 INFO  : 'ps7_post_config' command is executed.
+20:23:17 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+20:23:17 INFO  : The application 'C:/snn_1206/snn_dma_app_1208/Debug/snn_dma_app_1208.elf' is downloaded to processor 'ps7_cortexa9_0'.
+20:23:17 INFO  : 'configparams force-mem-access 0' command is executed.
+20:23:17 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Digilent JTAG-SMT2NC 210308BA4DDE" && level==0} -index 1
+fpga -file C:/snn_1206/snn_dma_app_1208/_ide/bitstream/design_1_wrapper_1208.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw C:/snn_1206/design_1_wrapper_1208/export/design_1_wrapper_1208/hw/design_1_wrapper_1208.xsa -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+source C:/snn_1206/snn_dma_app_1208/_ide/psinit/ps7_init.tcl
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "*A9*#0"}
+dow C:/snn_1206/snn_dma_app_1208/Debug/snn_dma_app_1208.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+20:23:17 INFO  : Memory regions updated for context APU
+20:23:17 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+20:23:17 INFO  : 'con' command is executed.
+20:23:17 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A9*#0"}
+con
+----------------End of Script----------------
+
+20:23:17 INFO  : Launch script is exported to file 'C:\snn_1206\.sdk\launch_scripts\single_application_debug\debugger_snn_dma_app_1208-default.tcl'
+20:41:44 INFO  : Checking for BSP changes to sync application flags for project 'snn_dma_app_1208'...
+20:42:06 INFO  : Checking for BSP changes to sync application flags for project 'snn_dma_app_1208'...
+20:42:21 INFO  : Disconnected from the channel tcfchan#2.
+20:42:22 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+20:42:22 INFO  : Jtag cable 'Digilent JTAG-SMT2NC 210308BA4DDE' is selected.
+20:42:22 INFO  : 'jtag frequency' command is executed.
+20:42:22 INFO  : Context for 'APU' is selected.
+20:42:22 INFO  : System reset is completed.
+20:42:25 INFO  : 'after 3000' command is executed.
+20:42:25 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent JTAG-SMT2NC 210308BA4DDE" && level==0} -index 1' command is executed.
+20:42:28 INFO  : FPGA configured successfully with bitstream "C:/snn_1206/snn_dma_app_1208/_ide/bitstream/design_1_wrapper_1208.bit"
+20:42:28 INFO  : Context for 'APU' is selected.
+20:42:28 INFO  : Hardware design information is loaded from 'C:/snn_1206/design_1_wrapper_1208/export/design_1_wrapper_1208/hw/design_1_wrapper_1208.xsa'.
+20:42:28 INFO  : 'configparams force-mem-access 1' command is executed.
+20:42:28 INFO  : Context for 'APU' is selected.
+20:42:28 INFO  : Sourcing of 'C:/snn_1206/snn_dma_app_1208/_ide/psinit/ps7_init.tcl' is done.
+20:42:28 INFO  : 'ps7_init' command is executed.
+20:42:28 INFO  : 'ps7_post_config' command is executed.
+20:42:28 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+20:42:28 INFO  : The application 'C:/snn_1206/snn_dma_app_1208/Debug/snn_dma_app_1208.elf' is downloaded to processor 'ps7_cortexa9_0'.
+20:42:28 INFO  : 'configparams force-mem-access 0' command is executed.
+20:42:28 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Digilent JTAG-SMT2NC 210308BA4DDE" && level==0} -index 1
+fpga -file C:/snn_1206/snn_dma_app_1208/_ide/bitstream/design_1_wrapper_1208.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw C:/snn_1206/design_1_wrapper_1208/export/design_1_wrapper_1208/hw/design_1_wrapper_1208.xsa -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+source C:/snn_1206/snn_dma_app_1208/_ide/psinit/ps7_init.tcl
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "*A9*#0"}
+dow C:/snn_1206/snn_dma_app_1208/Debug/snn_dma_app_1208.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+20:42:28 INFO  : Memory regions updated for context APU
+20:42:28 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+20:42:28 INFO  : 'con' command is executed.
+20:42:28 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A9*#0"}
+con
+----------------End of Script----------------
+
+20:42:28 INFO  : Launch script is exported to file 'C:\snn_1206\.sdk\launch_scripts\single_application_debug\debugger_snn_dma_app_1208-default.tcl'
+20:58:09 INFO  : Disconnected from the channel tcfchan#4.
+20:58:10 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+20:58:11 INFO  : Jtag cable 'Digilent JTAG-SMT2NC 210308BA4DDE' is selected.
+20:58:11 INFO  : 'jtag frequency' command is executed.
+20:58:11 INFO  : Context for 'APU' is selected.
+20:58:11 INFO  : System reset is completed.
+20:58:14 INFO  : 'after 3000' command is executed.
+20:58:14 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent JTAG-SMT2NC 210308BA4DDE" && level==0} -index 1' command is executed.
+20:58:16 INFO  : FPGA configured successfully with bitstream "C:/snn_1206/snn_dma_app_1208/_ide/bitstream/design_1_wrapper_1208.bit"
+20:58:16 INFO  : Context for 'APU' is selected.
+20:58:16 INFO  : Hardware design information is loaded from 'C:/snn_1206/design_1_wrapper_1208/export/design_1_wrapper_1208/hw/design_1_wrapper_1208.xsa'.
+20:58:16 INFO  : 'configparams force-mem-access 1' command is executed.
+20:58:16 INFO  : Context for 'APU' is selected.
+20:58:16 INFO  : Sourcing of 'C:/snn_1206/snn_dma_app_1208/_ide/psinit/ps7_init.tcl' is done.
+20:58:17 INFO  : 'ps7_init' command is executed.
+20:58:17 INFO  : 'ps7_post_config' command is executed.
+20:58:17 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+20:58:17 INFO  : The application 'C:/snn_1206/snn_dma_app_1208/Debug/snn_dma_app_1208.elf' is downloaded to processor 'ps7_cortexa9_0'.
+20:58:17 INFO  : 'configparams force-mem-access 0' command is executed.
+20:58:17 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Digilent JTAG-SMT2NC 210308BA4DDE" && level==0} -index 1
+fpga -file C:/snn_1206/snn_dma_app_1208/_ide/bitstream/design_1_wrapper_1208.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw C:/snn_1206/design_1_wrapper_1208/export/design_1_wrapper_1208/hw/design_1_wrapper_1208.xsa -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+source C:/snn_1206/snn_dma_app_1208/_ide/psinit/ps7_init.tcl
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "*A9*#0"}
+dow C:/snn_1206/snn_dma_app_1208/Debug/snn_dma_app_1208.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+20:58:17 INFO  : Memory regions updated for context APU
+20:58:17 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+20:58:17 INFO  : 'con' command is executed.
+20:58:17 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A9*#0"}
+con
+----------------End of Script----------------
+
+20:58:17 INFO  : Launch script is exported to file 'C:\snn_1206\.sdk\launch_scripts\single_application_debug\debugger_snn_dma_app_1208-default.tcl'
+21:13:11 INFO  : Disconnected from the channel tcfchan#5.
+21:13:12 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+21:13:13 INFO  : Jtag cable 'Digilent JTAG-SMT2NC 210308BA4DDE' is selected.
+21:13:13 INFO  : 'jtag frequency' command is executed.
+21:13:13 INFO  : Context for 'APU' is selected.
+21:13:13 INFO  : System reset is completed.
+21:13:16 INFO  : 'after 3000' command is executed.
+21:13:16 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent JTAG-SMT2NC 210308BA4DDE" && level==0} -index 1' command is executed.
+21:13:19 INFO  : FPGA configured successfully with bitstream "C:/snn_1206/snn_dma_app_1208/_ide/bitstream/design_1_wrapper_1208.bit"
+21:13:19 INFO  : Context for 'APU' is selected.
+21:13:19 INFO  : Hardware design information is loaded from 'C:/snn_1206/design_1_wrapper_1208/export/design_1_wrapper_1208/hw/design_1_wrapper_1208.xsa'.
+21:13:19 INFO  : 'configparams force-mem-access 1' command is executed.
+21:13:19 INFO  : Context for 'APU' is selected.
+21:13:19 INFO  : Sourcing of 'C:/snn_1206/snn_dma_app_1208/_ide/psinit/ps7_init.tcl' is done.
+21:13:20 INFO  : 'ps7_init' command is executed.
+21:13:20 INFO  : 'ps7_post_config' command is executed.
+21:13:20 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+21:13:20 INFO  : The application 'C:/snn_1206/snn_dma_app_1208/Debug/snn_dma_app_1208.elf' is downloaded to processor 'ps7_cortexa9_0'.
+21:13:20 INFO  : 'configparams force-mem-access 0' command is executed.
+21:13:20 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Digilent JTAG-SMT2NC 210308BA4DDE" && level==0} -index 1
+fpga -file C:/snn_1206/snn_dma_app_1208/_ide/bitstream/design_1_wrapper_1208.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw C:/snn_1206/design_1_wrapper_1208/export/design_1_wrapper_1208/hw/design_1_wrapper_1208.xsa -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+source C:/snn_1206/snn_dma_app_1208/_ide/psinit/ps7_init.tcl
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "*A9*#0"}
+dow C:/snn_1206/snn_dma_app_1208/Debug/snn_dma_app_1208.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+21:13:20 INFO  : Memory regions updated for context APU
+21:13:21 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+21:13:21 INFO  : 'con' command is executed.
+21:13:21 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A9*#0"}
+con
+----------------End of Script----------------
+
+21:13:21 INFO  : Launch script is exported to file 'C:\snn_1206\.sdk\launch_scripts\single_application_debug\debugger_snn_dma_app_1208-default.tcl'
+21:14:45 INFO  : Disconnected from the channel tcfchan#6.
+21:14:46 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+21:14:47 INFO  : Jtag cable 'Digilent JTAG-SMT2NC 210308BA4DDE' is selected.
+21:14:47 INFO  : 'jtag frequency' command is executed.
+21:14:47 INFO  : Context for 'APU' is selected.
+21:14:47 INFO  : System reset is completed.
+21:14:50 INFO  : 'after 3000' command is executed.
+21:14:50 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent JTAG-SMT2NC 210308BA4DDE" && level==0} -index 1' command is executed.
+21:14:53 INFO  : FPGA configured successfully with bitstream "C:/snn_1206/snn_dma_app_1208/_ide/bitstream/design_1_wrapper_1208.bit"
+21:14:53 INFO  : Context for 'APU' is selected.
+21:14:53 INFO  : Hardware design information is loaded from 'C:/snn_1206/design_1_wrapper_1208/export/design_1_wrapper_1208/hw/design_1_wrapper_1208.xsa'.
+21:14:53 INFO  : 'configparams force-mem-access 1' command is executed.
+21:14:53 INFO  : Context for 'APU' is selected.
+21:14:53 INFO  : Sourcing of 'C:/snn_1206/snn_dma_app_1208/_ide/psinit/ps7_init.tcl' is done.
+21:14:55 INFO  : 'ps7_init' command is executed.
+21:14:55 INFO  : 'ps7_post_config' command is executed.
+21:14:55 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+21:14:55 INFO  : The application 'C:/snn_1206/snn_dma_app_1208/Debug/snn_dma_app_1208.elf' is downloaded to processor 'ps7_cortexa9_0'.
+21:14:55 INFO  : 'configparams force-mem-access 0' command is executed.
+21:14:55 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Digilent JTAG-SMT2NC 210308BA4DDE" && level==0} -index 1
+fpga -file C:/snn_1206/snn_dma_app_1208/_ide/bitstream/design_1_wrapper_1208.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw C:/snn_1206/design_1_wrapper_1208/export/design_1_wrapper_1208/hw/design_1_wrapper_1208.xsa -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+source C:/snn_1206/snn_dma_app_1208/_ide/psinit/ps7_init.tcl
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "*A9*#0"}
+dow C:/snn_1206/snn_dma_app_1208/Debug/snn_dma_app_1208.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+21:14:55 INFO  : Memory regions updated for context APU
+21:14:56 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+21:14:56 INFO  : 'con' command is executed.
+21:14:56 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A9*#0"}
+con
+----------------End of Script----------------
+
+21:14:56 INFO  : Launch script is exported to file 'C:\snn_1206\.sdk\launch_scripts\single_application_debug\debugger_snn_dma_app_1208-default.tcl'
+21:20:15 INFO  : Disconnected from the channel tcfchan#7.
+21:20:16 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+21:20:17 INFO  : Jtag cable 'Digilent JTAG-SMT2NC 210308BA4DDE' is selected.
+21:20:17 INFO  : 'jtag frequency' command is executed.
+21:20:17 INFO  : Context for 'APU' is selected.
+21:20:17 INFO  : System reset is completed.
+21:20:20 INFO  : 'after 3000' command is executed.
+21:20:20 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent JTAG-SMT2NC 210308BA4DDE" && level==0} -index 1' command is executed.
+21:20:22 INFO  : FPGA configured successfully with bitstream "C:/snn_1206/snn_dma_app_1208/_ide/bitstream/design_1_wrapper_1208.bit"
+21:20:23 INFO  : Context for 'APU' is selected.
+21:20:23 INFO  : Hardware design information is loaded from 'C:/snn_1206/design_1_wrapper_1208/export/design_1_wrapper_1208/hw/design_1_wrapper_1208.xsa'.
+21:20:23 INFO  : 'configparams force-mem-access 1' command is executed.
+21:20:23 INFO  : Context for 'APU' is selected.
+21:20:23 INFO  : Sourcing of 'C:/snn_1206/snn_dma_app_1208/_ide/psinit/ps7_init.tcl' is done.
+21:20:24 INFO  : 'ps7_init' command is executed.
+21:20:24 INFO  : 'ps7_post_config' command is executed.
+21:20:24 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+21:20:25 INFO  : The application 'C:/snn_1206/snn_dma_app_1208/Debug/snn_dma_app_1208.elf' is downloaded to processor 'ps7_cortexa9_0'.
+21:20:25 INFO  : 'configparams force-mem-access 0' command is executed.
+21:20:25 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Digilent JTAG-SMT2NC 210308BA4DDE" && level==0} -index 1
+fpga -file C:/snn_1206/snn_dma_app_1208/_ide/bitstream/design_1_wrapper_1208.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw C:/snn_1206/design_1_wrapper_1208/export/design_1_wrapper_1208/hw/design_1_wrapper_1208.xsa -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+source C:/snn_1206/snn_dma_app_1208/_ide/psinit/ps7_init.tcl
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "*A9*#0"}
+dow C:/snn_1206/snn_dma_app_1208/Debug/snn_dma_app_1208.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+21:20:25 INFO  : Memory regions updated for context APU
+21:20:25 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+21:20:25 INFO  : 'con' command is executed.
+21:20:25 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A9*#0"}
+con
+----------------End of Script----------------
+
+21:20:25 INFO  : Launch script is exported to file 'C:\snn_1206\.sdk\launch_scripts\single_application_debug\debugger_snn_dma_app_1208-default.tcl'
+21:26:21 INFO  : Disconnected from the channel tcfchan#8.
+21:26:22 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+21:26:22 INFO  : Jtag cable 'Digilent JTAG-SMT2NC 210308BA4DDE' is selected.
+21:26:22 INFO  : 'jtag frequency' command is executed.
+21:26:22 INFO  : Context for 'APU' is selected.
+21:26:22 INFO  : System reset is completed.
+21:26:25 INFO  : 'after 3000' command is executed.
+21:26:26 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent JTAG-SMT2NC 210308BA4DDE" && level==0} -index 1' command is executed.
+21:26:28 INFO  : FPGA configured successfully with bitstream "C:/snn_1206/snn_dma_app_1208/_ide/bitstream/design_1_wrapper_1208.bit"
+21:26:28 INFO  : Context for 'APU' is selected.
+21:26:28 INFO  : Hardware design information is loaded from 'C:/snn_1206/design_1_wrapper_1208/export/design_1_wrapper_1208/hw/design_1_wrapper_1208.xsa'.
+21:26:28 INFO  : 'configparams force-mem-access 1' command is executed.
+21:26:28 INFO  : Context for 'APU' is selected.
+21:26:28 INFO  : Sourcing of 'C:/snn_1206/snn_dma_app_1208/_ide/psinit/ps7_init.tcl' is done.
+21:26:29 INFO  : 'ps7_init' command is executed.
+21:26:29 INFO  : 'ps7_post_config' command is executed.
+21:26:29 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+21:26:30 INFO  : The application 'C:/snn_1206/snn_dma_app_1208/Debug/snn_dma_app_1208.elf' is downloaded to processor 'ps7_cortexa9_0'.
+21:26:30 INFO  : 'configparams force-mem-access 0' command is executed.
+21:26:30 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Digilent JTAG-SMT2NC 210308BA4DDE" && level==0} -index 1
+fpga -file C:/snn_1206/snn_dma_app_1208/_ide/bitstream/design_1_wrapper_1208.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw C:/snn_1206/design_1_wrapper_1208/export/design_1_wrapper_1208/hw/design_1_wrapper_1208.xsa -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+source C:/snn_1206/snn_dma_app_1208/_ide/psinit/ps7_init.tcl
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "*A9*#0"}
+dow C:/snn_1206/snn_dma_app_1208/Debug/snn_dma_app_1208.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+21:26:30 INFO  : Memory regions updated for context APU
+21:26:30 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+21:26:30 INFO  : 'con' command is executed.
+21:26:30 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A9*#0"}
+con
+----------------End of Script----------------
+
+21:26:30 INFO  : Launch script is exported to file 'C:\snn_1206\.sdk\launch_scripts\single_application_debug\debugger_snn_dma_app_1208-default.tcl'
+21:40:07 INFO  : Disconnected from the channel tcfchan#9.
+21:40:08 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+21:40:08 INFO  : Jtag cable 'Digilent JTAG-SMT2NC 210308BA4DDE' is selected.
+21:40:08 INFO  : 'jtag frequency' command is executed.
+21:40:08 INFO  : Context for 'APU' is selected.
+21:40:09 INFO  : System reset is completed.
+21:40:12 INFO  : 'after 3000' command is executed.
+21:40:12 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent JTAG-SMT2NC 210308BA4DDE" && level==0} -index 1' command is executed.
+21:40:15 INFO  : FPGA configured successfully with bitstream "C:/snn_1206/snn_dma_app_1208/_ide/bitstream/design_1_wrapper_1208.bit"
+21:40:15 INFO  : Context for 'APU' is selected.
+21:40:15 INFO  : Hardware design information is loaded from 'C:/snn_1206/design_1_wrapper_1208/export/design_1_wrapper_1208/hw/design_1_wrapper_1208.xsa'.
+21:40:15 INFO  : 'configparams force-mem-access 1' command is executed.
+21:40:15 INFO  : Context for 'APU' is selected.
+21:40:15 INFO  : Sourcing of 'C:/snn_1206/snn_dma_app_1208/_ide/psinit/ps7_init.tcl' is done.
+21:40:16 INFO  : 'ps7_init' command is executed.
+21:40:16 INFO  : 'ps7_post_config' command is executed.
+21:40:16 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+21:40:16 INFO  : The application 'C:/snn_1206/snn_dma_app_1208/Debug/snn_dma_app_1208.elf' is downloaded to processor 'ps7_cortexa9_0'.
+21:40:16 INFO  : 'configparams force-mem-access 0' command is executed.
+21:40:16 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Digilent JTAG-SMT2NC 210308BA4DDE" && level==0} -index 1
+fpga -file C:/snn_1206/snn_dma_app_1208/_ide/bitstream/design_1_wrapper_1208.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw C:/snn_1206/design_1_wrapper_1208/export/design_1_wrapper_1208/hw/design_1_wrapper_1208.xsa -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+source C:/snn_1206/snn_dma_app_1208/_ide/psinit/ps7_init.tcl
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "*A9*#0"}
+dow C:/snn_1206/snn_dma_app_1208/Debug/snn_dma_app_1208.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+21:40:16 INFO  : Memory regions updated for context APU
+21:40:16 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+21:40:17 INFO  : 'con' command is executed.
+21:40:17 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A9*#0"}
+con
+----------------End of Script----------------
+
+21:40:17 INFO  : Launch script is exported to file 'C:\snn_1206\.sdk\launch_scripts\single_application_debug\debugger_snn_dma_app_1208-default.tcl'
+21:53:35 INFO  : Disconnected from the channel tcfchan#10.
+21:53:35 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+21:53:36 INFO  : Jtag cable 'Digilent JTAG-SMT2NC 210308BA4DDE' is selected.
+21:53:36 INFO  : 'jtag frequency' command is executed.
+21:53:36 INFO  : Context for 'APU' is selected.
+21:53:36 INFO  : System reset is completed.
+21:53:39 INFO  : 'after 3000' command is executed.
+21:53:39 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent JTAG-SMT2NC 210308BA4DDE" && level==0} -index 1' command is executed.
+21:53:42 INFO  : FPGA configured successfully with bitstream "C:/snn_1206/snn_dma_app_1208/_ide/bitstream/design_1_wrapper_1208.bit"
+21:53:42 INFO  : Context for 'APU' is selected.
+21:53:42 INFO  : Hardware design information is loaded from 'C:/snn_1206/design_1_wrapper_1208/export/design_1_wrapper_1208/hw/design_1_wrapper_1208.xsa'.
+21:53:42 INFO  : 'configparams force-mem-access 1' command is executed.
+21:53:42 INFO  : Context for 'APU' is selected.
+21:53:42 INFO  : Sourcing of 'C:/snn_1206/snn_dma_app_1208/_ide/psinit/ps7_init.tcl' is done.
+21:53:43 INFO  : 'ps7_init' command is executed.
+21:53:43 INFO  : 'ps7_post_config' command is executed.
+21:53:43 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+21:53:44 INFO  : The application 'C:/snn_1206/snn_dma_app_1208/Debug/snn_dma_app_1208.elf' is downloaded to processor 'ps7_cortexa9_0'.
+21:53:44 INFO  : 'configparams force-mem-access 0' command is executed.
+21:53:44 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Digilent JTAG-SMT2NC 210308BA4DDE" && level==0} -index 1
+fpga -file C:/snn_1206/snn_dma_app_1208/_ide/bitstream/design_1_wrapper_1208.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw C:/snn_1206/design_1_wrapper_1208/export/design_1_wrapper_1208/hw/design_1_wrapper_1208.xsa -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+source C:/snn_1206/snn_dma_app_1208/_ide/psinit/ps7_init.tcl
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "*A9*#0"}
+dow C:/snn_1206/snn_dma_app_1208/Debug/snn_dma_app_1208.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+21:53:44 INFO  : Memory regions updated for context APU
+21:53:44 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+21:53:44 INFO  : 'con' command is executed.
+21:53:44 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A9*#0"}
+con
+----------------End of Script----------------
+
+21:53:44 INFO  : Launch script is exported to file 'C:\snn_1206\.sdk\launch_scripts\single_application_debug\debugger_snn_dma_app_1208-default.tcl'
+22:05:55 INFO  : Disconnected from the channel tcfchan#11.
+22:05:56 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+22:05:57 INFO  : Jtag cable 'Digilent JTAG-SMT2NC 210308BA4DDE' is selected.
+22:05:57 INFO  : 'jtag frequency' command is executed.
+22:05:57 INFO  : Context for 'APU' is selected.
+22:05:57 INFO  : System reset is completed.
+22:06:00 INFO  : 'after 3000' command is executed.
+22:06:00 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent JTAG-SMT2NC 210308BA4DDE" && level==0} -index 1' command is executed.
+22:06:03 INFO  : FPGA configured successfully with bitstream "C:/snn_1206/snn_dma_app_1208/_ide/bitstream/design_1_wrapper_1208.bit"
+22:06:03 INFO  : Context for 'APU' is selected.
+22:06:03 INFO  : Hardware design information is loaded from 'C:/snn_1206/design_1_wrapper_1208/export/design_1_wrapper_1208/hw/design_1_wrapper_1208.xsa'.
+22:06:03 INFO  : 'configparams force-mem-access 1' command is executed.
+22:06:03 INFO  : Context for 'APU' is selected.
+22:06:03 INFO  : Sourcing of 'C:/snn_1206/snn_dma_app_1208/_ide/psinit/ps7_init.tcl' is done.
+22:06:04 INFO  : 'ps7_init' command is executed.
+22:06:04 INFO  : 'ps7_post_config' command is executed.
+22:06:04 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+22:06:04 INFO  : The application 'C:/snn_1206/snn_dma_app_1208/Debug/snn_dma_app_1208.elf' is downloaded to processor 'ps7_cortexa9_0'.
+22:06:04 INFO  : 'configparams force-mem-access 0' command is executed.
+22:06:04 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Digilent JTAG-SMT2NC 210308BA4DDE" && level==0} -index 1
+fpga -file C:/snn_1206/snn_dma_app_1208/_ide/bitstream/design_1_wrapper_1208.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw C:/snn_1206/design_1_wrapper_1208/export/design_1_wrapper_1208/hw/design_1_wrapper_1208.xsa -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+source C:/snn_1206/snn_dma_app_1208/_ide/psinit/ps7_init.tcl
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "*A9*#0"}
+dow C:/snn_1206/snn_dma_app_1208/Debug/snn_dma_app_1208.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+22:06:05 INFO  : Memory regions updated for context APU
+22:06:05 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+22:06:05 INFO  : 'con' command is executed.
+22:06:05 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A9*#0"}
+con
+----------------End of Script----------------
+
+22:06:05 INFO  : Launch script is exported to file 'C:\snn_1206\.sdk\launch_scripts\single_application_debug\debugger_snn_dma_app_1208-default.tcl'
+22:07:08 INFO  : Disconnected from the channel tcfchan#12.
+22:07:09 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+22:07:09 INFO  : Jtag cable 'Digilent JTAG-SMT2NC 210308BA4DDE' is selected.
+22:07:09 INFO  : 'jtag frequency' command is executed.
+22:07:09 INFO  : Context for 'APU' is selected.
+22:07:09 INFO  : System reset is completed.
+22:07:12 INFO  : 'after 3000' command is executed.
+22:07:13 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent JTAG-SMT2NC 210308BA4DDE" && level==0} -index 1' command is executed.
+22:07:15 INFO  : FPGA configured successfully with bitstream "C:/snn_1206/snn_dma_app_1208/_ide/bitstream/design_1_wrapper_1208.bit"
+22:07:15 INFO  : Context for 'APU' is selected.
+22:07:15 INFO  : Hardware design information is loaded from 'C:/snn_1206/design_1_wrapper_1208/export/design_1_wrapper_1208/hw/design_1_wrapper_1208.xsa'.
+22:07:15 INFO  : 'configparams force-mem-access 1' command is executed.
+22:07:15 INFO  : Context for 'APU' is selected.
+22:07:15 INFO  : Sourcing of 'C:/snn_1206/snn_dma_app_1208/_ide/psinit/ps7_init.tcl' is done.
+22:07:17 INFO  : 'ps7_init' command is executed.
+22:07:17 INFO  : 'ps7_post_config' command is executed.
+22:07:17 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+22:07:17 INFO  : The application 'C:/snn_1206/snn_dma_app_1208/Debug/snn_dma_app_1208.elf' is downloaded to processor 'ps7_cortexa9_0'.
+22:07:17 INFO  : 'configparams force-mem-access 0' command is executed.
+22:07:17 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Digilent JTAG-SMT2NC 210308BA4DDE" && level==0} -index 1
+fpga -file C:/snn_1206/snn_dma_app_1208/_ide/bitstream/design_1_wrapper_1208.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw C:/snn_1206/design_1_wrapper_1208/export/design_1_wrapper_1208/hw/design_1_wrapper_1208.xsa -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+source C:/snn_1206/snn_dma_app_1208/_ide/psinit/ps7_init.tcl
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "*A9*#0"}
+dow C:/snn_1206/snn_dma_app_1208/Debug/snn_dma_app_1208.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+22:07:17 INFO  : Memory regions updated for context APU
+22:07:18 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+22:07:18 INFO  : 'con' command is executed.
+22:07:18 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A9*#0"}
+con
+----------------End of Script----------------
+
+22:07:18 INFO  : Launch script is exported to file 'C:\snn_1206\.sdk\launch_scripts\single_application_debug\debugger_snn_dma_app_1208-default.tcl'
+22:08:45 INFO  : Disconnected from the channel tcfchan#13.
+22:08:46 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+22:08:46 INFO  : Jtag cable 'Digilent JTAG-SMT2NC 210308BA4DDE' is selected.
+22:08:46 INFO  : 'jtag frequency' command is executed.
+22:08:46 INFO  : Context for 'APU' is selected.
+22:08:47 INFO  : System reset is completed.
+22:08:50 INFO  : 'after 3000' command is executed.
+22:08:50 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent JTAG-SMT2NC 210308BA4DDE" && level==0} -index 1' command is executed.
+22:08:52 INFO  : FPGA configured successfully with bitstream "C:/snn_1206/snn_dma_app_1208/_ide/bitstream/design_1_wrapper_1208.bit"
+22:08:52 INFO  : Context for 'APU' is selected.
+22:08:52 INFO  : Hardware design information is loaded from 'C:/snn_1206/design_1_wrapper_1208/export/design_1_wrapper_1208/hw/design_1_wrapper_1208.xsa'.
+22:08:52 INFO  : 'configparams force-mem-access 1' command is executed.
+22:08:52 INFO  : Context for 'APU' is selected.
+22:08:52 INFO  : Sourcing of 'C:/snn_1206/snn_dma_app_1208/_ide/psinit/ps7_init.tcl' is done.
+22:08:54 INFO  : 'ps7_init' command is executed.
+22:08:54 INFO  : 'ps7_post_config' command is executed.
+22:08:54 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+22:08:54 INFO  : The application 'C:/snn_1206/snn_dma_app_1208/Debug/snn_dma_app_1208.elf' is downloaded to processor 'ps7_cortexa9_0'.
+22:08:54 INFO  : 'configparams force-mem-access 0' command is executed.
+22:08:54 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Digilent JTAG-SMT2NC 210308BA4DDE" && level==0} -index 1
+fpga -file C:/snn_1206/snn_dma_app_1208/_ide/bitstream/design_1_wrapper_1208.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw C:/snn_1206/design_1_wrapper_1208/export/design_1_wrapper_1208/hw/design_1_wrapper_1208.xsa -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+source C:/snn_1206/snn_dma_app_1208/_ide/psinit/ps7_init.tcl
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "*A9*#0"}
+dow C:/snn_1206/snn_dma_app_1208/Debug/snn_dma_app_1208.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+22:08:54 INFO  : Memory regions updated for context APU
+22:08:55 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+22:08:55 INFO  : 'con' command is executed.
+22:08:55 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A9*#0"}
+con
+----------------End of Script----------------
+
+22:08:55 INFO  : Launch script is exported to file 'C:\snn_1206\.sdk\launch_scripts\single_application_debug\debugger_snn_dma_app_1208-default.tcl'
+22:10:29 INFO  : Disconnected from the channel tcfchan#14.
+22:10:30 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+22:10:31 INFO  : Jtag cable 'Digilent JTAG-SMT2NC 210308BA4DDE' is selected.
+22:10:31 INFO  : 'jtag frequency' command is executed.
+22:10:31 INFO  : Context for 'APU' is selected.
+22:10:31 INFO  : System reset is completed.
+22:10:34 INFO  : 'after 3000' command is executed.
+22:10:34 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent JTAG-SMT2NC 210308BA4DDE" && level==0} -index 1' command is executed.
+22:10:37 INFO  : FPGA configured successfully with bitstream "C:/snn_1206/snn_dma_app_1208/_ide/bitstream/design_1_wrapper_1208.bit"
+22:10:37 INFO  : Context for 'APU' is selected.
+22:10:37 INFO  : Hardware design information is loaded from 'C:/snn_1206/design_1_wrapper_1208/export/design_1_wrapper_1208/hw/design_1_wrapper_1208.xsa'.
+22:10:37 INFO  : 'configparams force-mem-access 1' command is executed.
+22:10:37 INFO  : Context for 'APU' is selected.
+22:10:37 INFO  : Sourcing of 'C:/snn_1206/snn_dma_app_1208/_ide/psinit/ps7_init.tcl' is done.
+22:10:38 INFO  : 'ps7_init' command is executed.
+22:10:38 INFO  : 'ps7_post_config' command is executed.
+22:10:38 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+22:10:39 INFO  : The application 'C:/snn_1206/snn_dma_app_1208/Debug/snn_dma_app_1208.elf' is downloaded to processor 'ps7_cortexa9_0'.
+22:10:39 INFO  : 'configparams force-mem-access 0' command is executed.
+22:10:39 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Digilent JTAG-SMT2NC 210308BA4DDE" && level==0} -index 1
+fpga -file C:/snn_1206/snn_dma_app_1208/_ide/bitstream/design_1_wrapper_1208.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw C:/snn_1206/design_1_wrapper_1208/export/design_1_wrapper_1208/hw/design_1_wrapper_1208.xsa -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+source C:/snn_1206/snn_dma_app_1208/_ide/psinit/ps7_init.tcl
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "*A9*#0"}
+dow C:/snn_1206/snn_dma_app_1208/Debug/snn_dma_app_1208.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+22:10:39 INFO  : Memory regions updated for context APU
+22:10:39 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+22:10:39 INFO  : 'con' command is executed.
+22:10:39 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A9*#0"}
+con
+----------------End of Script----------------
+
+22:10:39 INFO  : Launch script is exported to file 'C:\snn_1206\.sdk\launch_scripts\single_application_debug\debugger_snn_dma_app_1208-default.tcl'
+23:51:19 INFO  : Checking for BSP changes to sync application flags for project 'snn_dma_app_1208'...
+00:02:48 INFO  : Disconnected from the channel tcfchan#15.
+00:02:49 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+00:02:49 INFO  : Jtag cable 'Digilent JTAG-SMT2NC 210308BA4DDE' is selected.
+00:02:49 INFO  : 'jtag frequency' command is executed.
+00:02:50 INFO  : Context for 'APU' is selected.
+00:02:50 INFO  : System reset is completed.
+00:02:53 INFO  : 'after 3000' command is executed.
+00:02:53 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent JTAG-SMT2NC 210308BA4DDE" && level==0} -index 1' command is executed.
+00:02:55 INFO  : FPGA configured successfully with bitstream "C:/snn_1206/snn_dma_app_1208/_ide/bitstream/design_1_wrapper_1208.bit"
+00:02:56 INFO  : Context for 'APU' is selected.
+00:02:56 INFO  : Hardware design information is loaded from 'C:/snn_1206/design_1_wrapper_1208/export/design_1_wrapper_1208/hw/design_1_wrapper_1208.xsa'.
+00:02:56 INFO  : 'configparams force-mem-access 1' command is executed.
+00:02:56 INFO  : Context for 'APU' is selected.
+00:02:56 INFO  : Sourcing of 'C:/snn_1206/snn_dma_app_1208/_ide/psinit/ps7_init.tcl' is done.
+00:02:57 INFO  : 'ps7_init' command is executed.
+00:02:57 INFO  : 'ps7_post_config' command is executed.
+00:02:57 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+00:02:57 INFO  : The application 'C:/snn_1206/snn_dma_app_1208/Debug/snn_dma_app_1208.elf' is downloaded to processor 'ps7_cortexa9_0'.
+00:02:57 INFO  : 'configparams force-mem-access 0' command is executed.
+00:02:57 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Digilent JTAG-SMT2NC 210308BA4DDE" && level==0} -index 1
+fpga -file C:/snn_1206/snn_dma_app_1208/_ide/bitstream/design_1_wrapper_1208.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw C:/snn_1206/design_1_wrapper_1208/export/design_1_wrapper_1208/hw/design_1_wrapper_1208.xsa -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+source C:/snn_1206/snn_dma_app_1208/_ide/psinit/ps7_init.tcl
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "*A9*#0"}
+dow C:/snn_1206/snn_dma_app_1208/Debug/snn_dma_app_1208.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+00:02:58 INFO  : Memory regions updated for context APU
+00:02:58 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+00:02:58 INFO  : 'con' command is executed.
+00:02:58 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A9*#0"}
+con
+----------------End of Script----------------
+
+00:02:58 INFO  : Launch script is exported to file 'C:\snn_1206\.sdk\launch_scripts\single_application_debug\debugger_snn_dma_app_1208-default.tcl'
+00:18:06 INFO  : Checking for BSP changes to sync application flags for project 'snn_dma_app_1208'...
+00:19:44 INFO  : Checking for BSP changes to sync application flags for project 'snn_dma_app_1208'...
+00:20:41 INFO  : Checking for BSP changes to sync application flags for project 'snn_dma_app_1208'...
+00:20:47 INFO  : Disconnected from the channel tcfchan#16.
+00:20:48 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+00:20:48 INFO  : Jtag cable 'Digilent JTAG-SMT2NC 210308BA4DDE' is selected.
+00:20:48 INFO  : 'jtag frequency' command is executed.
+00:20:48 INFO  : Context for 'APU' is selected.
+00:20:48 INFO  : System reset is completed.
+00:20:51 INFO  : 'after 3000' command is executed.
+00:20:51 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent JTAG-SMT2NC 210308BA4DDE" && level==0} -index 1' command is executed.
+00:20:53 INFO  : FPGA configured successfully with bitstream "C:/snn_1206/snn_dma_app_1208/_ide/bitstream/design_1_wrapper_1208.bit"
+00:20:54 INFO  : Context for 'APU' is selected.
+00:20:54 INFO  : Hardware design information is loaded from 'C:/snn_1206/design_1_wrapper_1208/export/design_1_wrapper_1208/hw/design_1_wrapper_1208.xsa'.
+00:20:54 INFO  : 'configparams force-mem-access 1' command is executed.
+00:20:54 INFO  : Context for 'APU' is selected.
+00:20:54 INFO  : Sourcing of 'C:/snn_1206/snn_dma_app_1208/_ide/psinit/ps7_init.tcl' is done.
+00:20:54 INFO  : 'ps7_init' command is executed.
+00:20:54 INFO  : 'ps7_post_config' command is executed.
+00:20:54 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+00:20:54 INFO  : The application 'C:/snn_1206/snn_dma_app_1208/Debug/snn_dma_app_1208.elf' is downloaded to processor 'ps7_cortexa9_0'.
+00:20:54 INFO  : 'configparams force-mem-access 0' command is executed.
+00:20:54 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Digilent JTAG-SMT2NC 210308BA4DDE" && level==0} -index 1
+fpga -file C:/snn_1206/snn_dma_app_1208/_ide/bitstream/design_1_wrapper_1208.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw C:/snn_1206/design_1_wrapper_1208/export/design_1_wrapper_1208/hw/design_1_wrapper_1208.xsa -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+source C:/snn_1206/snn_dma_app_1208/_ide/psinit/ps7_init.tcl
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "*A9*#0"}
+dow C:/snn_1206/snn_dma_app_1208/Debug/snn_dma_app_1208.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+00:20:54 INFO  : Memory regions updated for context APU
+00:20:54 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+00:20:54 INFO  : 'con' command is executed.
+00:20:54 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A9*#0"}
+con
+----------------End of Script----------------
+
+00:20:54 INFO  : Launch script is exported to file 'C:\snn_1206\.sdk\launch_scripts\single_application_debug\debugger_snn_dma_app_1208-default.tcl'
+00:21:49 INFO  : Disconnected from the channel tcfchan#17.
+00:21:50 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+00:21:50 INFO  : Jtag cable 'Digilent JTAG-SMT2NC 210308BA4DDE' is selected.
+00:21:50 INFO  : 'jtag frequency' command is executed.
+00:21:50 INFO  : Context for 'APU' is selected.
+00:21:50 INFO  : System reset is completed.
+00:21:53 INFO  : 'after 3000' command is executed.
+00:21:53 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent JTAG-SMT2NC 210308BA4DDE" && level==0} -index 1' command is executed.
+00:21:56 INFO  : FPGA configured successfully with bitstream "C:/snn_1206/snn_dma_app_1208/_ide/bitstream/design_1_wrapper_1208.bit"
+00:21:56 INFO  : Context for 'APU' is selected.
+00:21:56 INFO  : Hardware design information is loaded from 'C:/snn_1206/design_1_wrapper_1208/export/design_1_wrapper_1208/hw/design_1_wrapper_1208.xsa'.
+00:21:56 INFO  : 'configparams force-mem-access 1' command is executed.
+00:21:56 INFO  : Context for 'APU' is selected.
+00:21:56 INFO  : Sourcing of 'C:/snn_1206/snn_dma_app_1208/_ide/psinit/ps7_init.tcl' is done.
+00:21:56 INFO  : 'ps7_init' command is executed.
+00:21:56 INFO  : 'ps7_post_config' command is executed.
+00:21:56 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+00:21:56 INFO  : The application 'C:/snn_1206/snn_dma_app_1208/Debug/snn_dma_app_1208.elf' is downloaded to processor 'ps7_cortexa9_0'.
+00:21:56 INFO  : 'configparams force-mem-access 0' command is executed.
+00:21:56 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Digilent JTAG-SMT2NC 210308BA4DDE" && level==0} -index 1
+fpga -file C:/snn_1206/snn_dma_app_1208/_ide/bitstream/design_1_wrapper_1208.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw C:/snn_1206/design_1_wrapper_1208/export/design_1_wrapper_1208/hw/design_1_wrapper_1208.xsa -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+source C:/snn_1206/snn_dma_app_1208/_ide/psinit/ps7_init.tcl
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "*A9*#0"}
+dow C:/snn_1206/snn_dma_app_1208/Debug/snn_dma_app_1208.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+00:21:57 INFO  : Memory regions updated for context APU
+00:21:57 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+00:21:57 INFO  : 'con' command is executed.
+00:21:57 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A9*#0"}
+con
+----------------End of Script----------------
+
+00:21:57 INFO  : Launch script is exported to file 'C:\snn_1206\.sdk\launch_scripts\single_application_debug\debugger_snn_dma_app_1208-default.tcl'
+00:31:03 INFO  : Checking for BSP changes to sync application flags for project 'snn_dma_app_1208'...
+00:33:07 INFO  : Disconnected from the channel tcfchan#18.
+00:33:08 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+00:33:08 INFO  : Jtag cable 'Digilent JTAG-SMT2NC 210308BA4DDE' is selected.
+00:33:08 INFO  : 'jtag frequency' command is executed.
+00:33:08 INFO  : Context for 'APU' is selected.
+00:33:08 INFO  : System reset is completed.
+00:33:11 INFO  : 'after 3000' command is executed.
+00:33:11 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent JTAG-SMT2NC 210308BA4DDE" && level==0} -index 1' command is executed.
+00:33:14 INFO  : FPGA configured successfully with bitstream "C:/snn_1206/snn_dma_app_1208/_ide/bitstream/design_1_wrapper_1208.bit"
+00:33:14 INFO  : Context for 'APU' is selected.
+00:33:14 INFO  : Hardware design information is loaded from 'C:/snn_1206/design_1_wrapper_1208/export/design_1_wrapper_1208/hw/design_1_wrapper_1208.xsa'.
+00:33:14 INFO  : 'configparams force-mem-access 1' command is executed.
+00:33:14 INFO  : Context for 'APU' is selected.
+00:33:14 INFO  : Sourcing of 'C:/snn_1206/snn_dma_app_1208/_ide/psinit/ps7_init.tcl' is done.
+00:33:14 INFO  : 'ps7_init' command is executed.
+00:33:14 INFO  : 'ps7_post_config' command is executed.
+00:33:14 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+00:33:15 INFO  : The application 'C:/snn_1206/snn_dma_app_1208/Debug/snn_dma_app_1208.elf' is downloaded to processor 'ps7_cortexa9_0'.
+00:33:15 INFO  : 'configparams force-mem-access 0' command is executed.
+00:33:15 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Digilent JTAG-SMT2NC 210308BA4DDE" && level==0} -index 1
+fpga -file C:/snn_1206/snn_dma_app_1208/_ide/bitstream/design_1_wrapper_1208.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw C:/snn_1206/design_1_wrapper_1208/export/design_1_wrapper_1208/hw/design_1_wrapper_1208.xsa -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+source C:/snn_1206/snn_dma_app_1208/_ide/psinit/ps7_init.tcl
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "*A9*#0"}
+dow C:/snn_1206/snn_dma_app_1208/Debug/snn_dma_app_1208.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+00:33:15 INFO  : Memory regions updated for context APU
+00:33:15 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+00:33:15 INFO  : 'con' command is executed.
+00:33:15 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A9*#0"}
+con
+----------------End of Script----------------
+
+00:33:15 INFO  : Launch script is exported to file 'C:\snn_1206\.sdk\launch_scripts\single_application_debug\debugger_snn_dma_app_1208-default.tcl'
+01:35:21 INFO  : Disconnected from the channel tcfchan#19.
+01:46:02 INFO  : Launching XSCT server: xsct.bat -n  -interactive C:\snn_1206\temp_xsdb_launch_script.tcl
+01:46:18 INFO  : Registering command handlers for Vitis TCF services
+01:46:19 INFO  : XSCT server has started successfully.
+01:46:19 INFO  : plnx-install-location is set to ''
+01:46:30 INFO  : Successfully done setting XSCT server connection channel  
+01:46:34 INFO  : Successfully done query RDI_DATADIR 
+01:46:34 INFO  : Successfully done setting workspace for the tool. 
+01:46:41 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+01:46:43 INFO  : Jtag cable 'Digilent JTAG-SMT2NC 210308BA4DDE' is selected.
+01:46:43 INFO  : 'jtag frequency' command is executed.
+01:46:43 INFO  : Context for 'APU' is selected.
+01:46:43 INFO  : System reset is completed.
+01:46:46 INFO  : 'after 3000' command is executed.
+01:46:46 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent JTAG-SMT2NC 210308BA4DDE" && level==0} -index 1' command is executed.
+01:46:49 INFO  : FPGA configured successfully with bitstream "C:/snn_1206/snn_dma_app_1208/_ide/bitstream/design_1_wrapper_1208.bit"
+01:46:49 INFO  : Context for 'APU' is selected.
+01:46:49 INFO  : Hardware design information is loaded from 'C:/snn_1206/design_1_wrapper_1208/export/design_1_wrapper_1208/hw/design_1_wrapper_1208.xsa'.
+01:46:49 INFO  : 'configparams force-mem-access 1' command is executed.
+01:46:49 INFO  : Context for 'APU' is selected.
+01:46:49 INFO  : Sourcing of 'C:/snn_1206/snn_dma_app_1208/_ide/psinit/ps7_init.tcl' is done.
+01:46:50 INFO  : 'ps7_init' command is executed.
+01:46:50 INFO  : 'ps7_post_config' command is executed.
+01:46:50 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+01:46:51 INFO  : The application 'C:/snn_1206/snn_dma_app_1208/Debug/snn_dma_app_1208.elf' is downloaded to processor 'ps7_cortexa9_0'.
+01:46:51 INFO  : 'configparams force-mem-access 0' command is executed.
+01:46:51 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Digilent JTAG-SMT2NC 210308BA4DDE" && level==0} -index 1
+fpga -file C:/snn_1206/snn_dma_app_1208/_ide/bitstream/design_1_wrapper_1208.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw C:/snn_1206/design_1_wrapper_1208/export/design_1_wrapper_1208/hw/design_1_wrapper_1208.xsa -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+source C:/snn_1206/snn_dma_app_1208/_ide/psinit/ps7_init.tcl
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "*A9*#0"}
+dow C:/snn_1206/snn_dma_app_1208/Debug/snn_dma_app_1208.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+01:46:51 INFO  : Memory regions updated for context APU
+01:46:51 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+01:46:51 INFO  : 'con' command is executed.
+01:46:51 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A9*#0"}
+con
+----------------End of Script----------------
+
+01:46:51 INFO  : Launch script is exported to file 'C:\snn_1206\.sdk\launch_scripts\single_application_debug\debugger_snn_dma_app_1208-default.tcl'
+01:59:44 INFO  : Disconnected from the channel tcfchan#1.
+01:59:45 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+01:59:45 INFO  : Jtag cable 'Digilent JTAG-SMT2NC 210308BA4DDE' is selected.
+01:59:45 INFO  : 'jtag frequency' command is executed.
+01:59:45 INFO  : Context for 'APU' is selected.
+01:59:45 INFO  : System reset is completed.
+01:59:49 INFO  : 'after 3000' command is executed.
+01:59:49 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent JTAG-SMT2NC 210308BA4DDE" && level==0} -index 1' command is executed.
+01:59:51 INFO  : FPGA configured successfully with bitstream "C:/snn_1206/snn_dma_app_1208/_ide/bitstream/design_1_wrapper_1208.bit"
+01:59:51 INFO  : Context for 'APU' is selected.
+01:59:55 INFO  : Hardware design information is loaded from 'C:/snn_1206/design_1_wrapper_1208/export/design_1_wrapper_1208/hw/design_1_wrapper_1208.xsa'.
+01:59:55 INFO  : 'configparams force-mem-access 1' command is executed.
+01:59:55 INFO  : Context for 'APU' is selected.
+01:59:55 INFO  : Sourcing of 'C:/snn_1206/snn_dma_app_1208/_ide/psinit/ps7_init.tcl' is done.
+01:59:56 INFO  : 'ps7_init' command is executed.
+01:59:56 INFO  : 'ps7_post_config' command is executed.
+01:59:56 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+01:59:57 INFO  : The application 'C:/snn_1206/snn_dma_app_1208/Debug/snn_dma_app_1208.elf' is downloaded to processor 'ps7_cortexa9_0'.
+01:59:57 INFO  : 'configparams force-mem-access 0' command is executed.
+01:59:57 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Digilent JTAG-SMT2NC 210308BA4DDE" && level==0} -index 1
+fpga -file C:/snn_1206/snn_dma_app_1208/_ide/bitstream/design_1_wrapper_1208.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw C:/snn_1206/design_1_wrapper_1208/export/design_1_wrapper_1208/hw/design_1_wrapper_1208.xsa -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+source C:/snn_1206/snn_dma_app_1208/_ide/psinit/ps7_init.tcl
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "*A9*#0"}
+dow C:/snn_1206/snn_dma_app_1208/Debug/snn_dma_app_1208.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+01:59:57 INFO  : Memory regions updated for context APU
+01:59:57 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+01:59:57 INFO  : 'con' command is executed.
+01:59:57 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A9*#0"}
+con
+----------------End of Script----------------
+
+01:59:57 INFO  : Launch script is exported to file 'C:\snn_1206\.sdk\launch_scripts\single_application_debug\debugger_snn_dma_app_1208-default.tcl'
+02:00:29 INFO  : Disconnected from the channel tcfchan#2.
+22:26:14 INFO  : Launching XSCT server: xsct.bat -n  -interactive C:\snn_1206\temp_xsdb_launch_script.tcl
+22:26:24 INFO  : XSCT server has started successfully.
+22:26:24 INFO  : Successfully done setting XSCT server connection channel  
+22:26:24 INFO  : plnx-install-location is set to ''
+22:26:24 INFO  : Successfully done setting workspace for the tool. 
+22:26:26 INFO  : Registering command handlers for Vitis TCF services
+22:26:46 INFO  : Successfully done query RDI_DATADIR 

@@ -1,0 +1,10 @@
+snn_ip_fadd_32ns_fYi
+snn_ip_fmul_32ns_g8j
+snn_ip_fcmp_32ns_hbi
+snn_core_fc_last_bkb
+snn_core_fc_last_cud
+snn_core_fc_last_eOg
+snn_ip_CTRL_s_axi
+regslice_core
+snn_core_fc_last
+snn_ip
