@@ -57,12 +57,7 @@ git push origin main  # 업로드
 
 ### Vivado Project
 - [Vivado 2019.2] open project -> 'snn_1206.xpr' 
-								IP는 
-									snn_ip\
-										solution1\
-												impl\
-													ip\ 를추가함
-
+								IP는 snn_ip\ -> solution1\ -> impl\ -> ip\ 
 - [Vivado HLS 2019.2] -> Open Project -> 'snn_1206\snn_ip\'
 - [Vitis IDE 2019.2] -> Vivado에서 Launch Vitis -> 'snn_1206\' Browse
 
