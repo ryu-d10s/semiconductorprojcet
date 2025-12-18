@@ -57,10 +57,10 @@ git push origin main  # 업로드
 
 ### Vivado Project
 - [Vivado 2019.2] -> Open Project -> `snn_1206.xpr` 
-								IP는 snn_ip\ -> solution1\ -> impl\ -> ip\ 
+								IP는 `snn_ip` -> `solution1\` -> `impl\` -> `ip\` 
 - [Vivado HLS 2019.2] -> Open Project -> `snn_1206\snn_ip\`
 - [Vitis IDE 2019.2] -> Vivado에서 Launch Vitis -> `snn_1206\` Browse
-- 'test_pc.py' : Teraterm 연결 -> Vitis로 Run -> Teraterm 연결 해제 -> PC에서 `test_pc.py` run -> PC에서 결과 확인
+- `test_pc.py` : Teraterm 연결 -> Vitis로 Run -> Teraterm 연결 해제 -> PC에서 `test_pc.py` run -> PC에서 결과 확인
 
 ## 주의사항
 - 푸시하기 전에 항상 `git pull` 먼저 실행
