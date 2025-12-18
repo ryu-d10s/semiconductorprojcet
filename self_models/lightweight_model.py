@@ -2,7 +2,6 @@ import torch
 import torch.nn as nn
 
 class Lightweight_ANN(nn.Module):
-    """경량 ANN 모델"""
     def __init__(self, num_classes=10):
         super().__init__()
         
@@ -74,4 +73,5 @@ class Lightweight_SNN(nn.Module):
         x = self.features(x)
         x = x.view(x.size(0), -1)
         x = self.classifier(x)
+
         return x
