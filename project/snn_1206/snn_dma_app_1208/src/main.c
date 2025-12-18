@@ -3,15 +3,13 @@
 #include "xparameters.h"
 #include "xaxidma.h"
 #include "xil_cache.h"
-#include "xsnn_ip.h"   // HLS SNN IP 드라이버 헤더 (IP 이름에 맞게)
+#include "xsnn_ip.h"   // HLS SNN IP 드라이버 헤더
 
-// ==========================================
-// Configuration
-// ==========================================
+
 #define DMA_DEV_ID          XPAR_AXIDMA_0_DEVICE_ID
 #define SNN_IP_DEV_ID       XPAR_SNN_IP_0_DEVICE_ID   // xparameters.h 안 이름에 맞게 확인
 
-// DDR 내 버퍼 베이스 주소 (디자인마다 다를 수 있음)
+// DDR 내 버퍼 베이스 주소 
 #define MEM_BASE_ADDR       0x01000000
 #define TX_BUFFER_BASE      (MEM_BASE_ADDR + 0x00100000)
 #define RX_BUFFER_BASE      (MEM_BASE_ADDR + 0x00300000)
@@ -20,7 +18,7 @@
 #define N_INPUT             256
 #define N_OUTPUT            10
 
-// We send 1 spike per AXI-stream word (1 byte stored in LSB)
+// send 1 spike per AXI-stream word (1 byte stored in LSB)
 #define N_SPIKES            (T_TIMESTEPS * N_INPUT)   // 2560
 #define N_WORDS_IN          N_SPIKES                  // 2560 32-bit words
 #define N_WORDS_OUT         1                         // one 32-bit result
@@ -28,9 +26,6 @@
 // DMA Busy 대기 타임아웃 (loop 카운트)
 #define DMA_TIMEOUT_COUNT   100000000
 
-// ==========================================
-// Global variables
-// ==========================================
 static XAxiDma AxiDma;
 static XSnn_ip SnnIp;          // HLS SNN IP 인스턴스
 
@@ -40,9 +35,8 @@ static u32 *RxBufferPtr = (u32 *)RX_BUFFER_BASE;
 // UART inbyte prototype (standalone BSP usually provides this)
 extern char inbyte(void);
 
-// ==========================================
+
 // Helper: Initialize AXI DMA
-// ==========================================
 int init_dma(void)
 {
     XAxiDma_Config *CfgPtr;
@@ -70,9 +64,7 @@ int init_dma(void)
     return XST_SUCCESS;
 }
 
-// ==========================================
 // Helper: Initialize SNN IP (HLS)
-// ==========================================
 int init_snn_ip(void)
 {
     int Status;
@@ -94,9 +86,7 @@ int init_snn_ip(void)
     return XST_SUCCESS;
 }
 
-// ==========================================
 // main
-// ==========================================
 int main()
 {
     int Status;
@@ -156,7 +146,7 @@ int main()
         if (h1 != 'N' || h2 != 'N') {
             xil_printf("Bad header received at iter %d: '%c' '%c' (expected 'N' 'N')\r\n",
                        iter, h1, h2);
-            // 다시 헤더 대기
+            // 다시 header 대기
             continue;
         }
 
@@ -254,7 +244,7 @@ int main()
         }
         xil_printf("Iteration %d: S2MM done.\r\n", iter);
 
-        // (옵션) IP 연산 완료 대기
+        // IP 연산 완료 대기
         xil_printf("Iteration %d: Waiting for SNN IP done...\r\n", iter);
         timeout = DMA_TIMEOUT_COUNT;
         while (!XSnn_ip_IsDone(&SnnIp)) {
